@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+     <head>
+         <meta charset="UTF-8" />
+         <title>Korona Gór Polski</title>
+         <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/kzkgp.css" type="text/css" />
+     </head>
+     <body>
+     <style> body{margin: 0px}</style>
+        <div class="TopBackgroud">
+        </div>
+        <div class="pudelko">
+            <div class="logo">
+                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
+            </div>
+            <div class="menu">
+                <ul class="ulmenu">
+                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
+                    <li class="limenu">
+                    {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}">
+                            KONTO  </a>
+                    {% else %}
+                        <div class="withoutLink">
+                        KONTO
+                        </div>
+                    {% endif %}                        <ul class="menu2">
+                            {% if current_user.is_authenticated %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ozdobnik2">
+            Klub Zdobywców Korony Gór Polski
+        </div>
+
+        <div class="first">
+                 <h2 class="naglowek">Jak tam wejsc ? heloł</h2>
+        Aby zostać oficjalnym zdobywcą Korony Gór Polski trzeba wejść na wszystkie szczyty z listy pokonując  je siłą własnych mięśni tj. pieszo, na rowerze, czy na nartach , wychodzi ponad 30 tysięcy metrów n.p.m. Obecnie do klubu należy blisko 60 tysięcy miłośników gór. Spośród nich godnością Zdobywcy szczyci się ponad 2800 osób.
+        Klub zrzesza nie tylko rodaków z kraju, ale i mieszkańców kilku państw europejskich, a nawet Syberii. W klubie orgaznizowane są dla członków: wyprawy na koronne szczyty, imprezy o tematyce górskiej, a także posiedzenia Loży Zdobywców, weryfikującej dokonania kandydatów na Zdobywców.
+           <br>  Jak potwierdza się zdobyte szczyty? <br>
+        No właśnie weryfikacja, każda osoba, która jest członkiem klubu otrzymuje książeczkę KGP przy pomocy której może dokumentować swoje sukcesy. W książeczce KGP każdy szczyt ma swoją stronę. Szczyt potwierdza fotografia wykonana na nim z charakterystycznym elementem danej góry i dobrze widoczną datą, wklejona na odpowiednią stronę oraz pieczęć schroniska, placówki, firmy mającej tam siedzibę (w przypadku braku takowej – pieczęć z miejscowości najbliższej szczytowi). Potwierdzeniem zdobycia szczytu może być także pieczęć i podpis uprawnionego członka Loży Zdobywców spotkanego na szlaku. Jeśli ktoś chce otrzymać oficjalny tytuł Zdobywcy Korony Gór Polski, powinien pamiętać, że naliczanie zdobytych szczytów zaczyna się od momentu wstąpienia do Klubu. Co istotne, nie ma ograniczenia czasowego, więc ten ambitny projekt można zarówno zrealizować w rok, jak i rozłożyć go na kilkanaście lat, stawiając sobie za cel zdobywanie szczytów podczas kolejnych wakacji.
+
+
+
+        </div>
+         <div class="obrazki">
+             <div class="obrazek1">
+                 <img src="/flaskApp/staticpp/static/ksiazka1.jpeg" alt="KZKGP" style="width:25%; height:300px;">
+             </div>
+             <div class="obrazek2">
+                 <img src="/flaskApp/staticpp/static/ksiazka2.jpg" alt="KZKGP" style="width:25%; height:300px;">
+             </div>
+             <div class="obrazek3">
+                 <img src="/flaskApp/staticpp/static/ksiazka3.jpeg" alt="KZKGP" style="width:25%; height:300px;">
+             </div>
+         </div>
+        <div class="BottomLine">
+        </div>
+        <div class="Footer">
+                 Copyright Weronika Paterek 2021
+        </div>
+     </body>

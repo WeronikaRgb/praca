@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+     <head>
+         <meta charset="UTF-8" />
+         <title>Korona Gór Polski</title>
+         <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/quiz.css" type="text/css" />
+     </head>
+     <body> <style> body{margin: 0px}</style>
+        <div class="TopBackgroud">
+        </div>
+        <div class="pudelko">
+            <div class="logo">
+                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
+            </div>
+            <div class="menu">
+                <ul class="ulmenu">
+                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
+                    <li class="limenu">
+                    {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}">
+                            KONTO  </a>
+                    {% else %}
+                        <div class="withoutLink">
+                        KONTO
+                        </div>
+                    {% endif %}
+                        <ul class="menu2">
+                            {% if current_user.is_authenticated %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="ozdobnik2">
+            Quiz
+        </div>
+     <div class="tresc">
+         <div class="first">
+             <p><h2 class="naglowek">O grze</h2>  </p>
+             <p> Quiz składa się z piętnastu pytań.</p>
+             <p> Odpowiedz na wszystkie, wybierając jedną poprawną odpowiedź. </p>
+             <p> Zdobądź jak najwięcej punktów.</p>
+             <p> Sprawdź  swoją wiedzę.</p>
+         </div>
+         <div class="start">
+             {% if current_user.is_authenticated %}
+                <p> <a  href= ? > Grajmy! </a> </p>
+             {% else %}
+                 <p> Aby zagrać <a  href="{{ url_for('login') }}"> zaloguj się </a> do swojego konta. Jeżeli nie masz konta <a  href="{{ url_for('register') }}"> utwórz je  </a>. </p>
+             {% endif %}
+         </div>
+     </div>
+
+     <div class="BottomLine">
+     </div>
+
+     <div class="Footer">
+         Copyright Weronika Paterek 2021
+     </div>
+
+     </body>

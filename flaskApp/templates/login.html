@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+     <head>
+         <meta charset="UTF-8" />
+         <title>Korona Gór Polski</title>
+         <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="../static/login.css" type="text/css" />
+     </head>
+     <body>
+     <style> body{margin: 0px}</style>
+        <div class="TopBackgroud">
+        </div>
+        <div class="pudelko">
+            <div class="logo">
+                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
+            </div>
+            <div class="menu">
+                <ul class="ulmenu">
+                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
+                    <li class="limenu">
+                    {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}">
+                            KONTO  </a>
+                    {% else %}
+                        <div class="withoutLink">
+                        KONTO
+                        </div>
+                    {% endif %}
+                        <ul class="menu2">
+                            {% if current_user.is_authenticated %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="menuu1"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="menuu2"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="ozdobnik2">
+            Logowanie
+        </div>
+
+ <div class="Message">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block HEJ %}{% endblock %}
+        </div>
+</div>
+<div class="formularz">
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Zaloguj się</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+            <small class="text-muted ml-2">
+                <a href="#">Nie pamiętasz hasła?</a>
+            </small>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Nie masz jeszcze konta? <a class="ml-2" href="{{ url_for('register') }}">Zarejestruj się teraz!</a>
+        </small>
+    </div>
+{% endblock content %}
+</div>
+        </div>
+        <div class="BottomLine">
+        </div>
+        <div class="Footer">
+            Copyright Weronika Paterek 2021
+        </div>
+     </body>

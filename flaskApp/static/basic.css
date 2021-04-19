@@ -1,0 +1,136 @@
+.TopBackgroud {
+    height: 40px;
+    width: 100%;
+    background: rgb(47, 79, 79);
+    background: linear-gradient(0deg, rgba(47,79,79,1) 13%, rgba(47,79,79,1) 28%, rgba(127,147,147,1) 67%, rgba(255,255,255,1) 90%);
+}
+
+.pudelko
+{
+    background-color: darkred;
+    padding-bottom: 90px;
+    padding-top: 10px;
+}
+
+.logo a
+{
+    width:20%;
+    height: 80px;
+    float: left;
+    background-color: darkred;
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    line-height: 80px;
+
+}
+.logo a:hover{
+    text-decoration: none;
+    color: white;
+}
+.menu
+{
+    background-color: white;
+    width: 80%;
+    height: 80px;
+    float: right;
+    line-height: 30px;
+}
+.ulmenu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+.limenu a{
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-family: Arial;
+    width: 20%;
+    text-align: center;
+    height: 50px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    color: black;
+    text-decoration: none;
+}
+.limenu a:hover{
+    color: white;
+    background-color: darkslategrey;
+    box-shadow: 0px 2px 3px gray;
+    text-decoration: none;
+    height: 50px;
+}
+
+.menu2{
+ text-decoration: none;
+}
+.menuu{
+    text-decoration: none;
+    list-style-type: none
+}
+.menuu a{
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: lightgrey;
+    position: relative;
+    float: right;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+
+ul > li > ul {
+  display:none;
+}
+
+ul > li:hover > ul {
+  display:block;
+}
+
+ul > li > ul > li {
+    height: 170px;
+    margin-top: 0px;
+
+}
+
+ul > li:first-child {
+  margin-left:0;
+}
+
+.withoutLink{
+    text-decoration: none;
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-family: Arial;
+    width: 20%;
+    text-align: center;
+    height: 50px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    color: black;
+}
+
+
+.BottomLine {
+    width: 100%;
+    border-bottom:darkred ;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+
+}
+
+.Footer {
+    background-color: darkslategrey;
+    color: #333;
+    height: 100px;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+}

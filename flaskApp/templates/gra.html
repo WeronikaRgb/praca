@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+     <head>
+         <meta charset="UTF-8" />
+         <title>Korona Gór Polski</title>
+          <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/gra.css" type="text/css" />
+     </head>
+     <body> <style> body{margin: 0px; background-color: darkslategrey;}</style>
+     <div class="All">
+         <div class="Title">
+                Quiz
+         </div>
+          <div class="BottomLine">
+          </div>
+         <div class="Content">
+             <!-- formularz z quizem -->
+             <form method="POST">
+             <!-- przeglądamy listę pytań -->
+             {% for p in pytania %}
+              <p>
+                <!-- wyświetlamy treść pytania -->
+                {{ p.pytanie }}
+                <br>
+                <!-- zapamiętujemy numer pytania licząc od zera -->
+                {% set pnr = loop.index0 %}
+                <!-- przeglądamy odpowiedzi dla danego pytania -->
+                {% for o in p.odpowiedzi %}
+                  <label>
+                    <!-- odpowiedzi wyświetlamy jako pole typu radio -->
+                    <input type="radio" value="{{ o }}" name="{{ pnr }}">
+                    {{ o }}
+                  </label>
+                  <br>
+                {% endfor %}
+              </p>
+              {% endfor %}
+            <!-- przycisk wysyłający wypełniony formularz -->
+            <button type="submit">Sprawdź odpowiedzi</button>
+            </form>
+         </div>
+         <div class="Results">
+             <!-- wyświetlamy komunikaty z funkcji flash -->
+            <p>
+              {% for message in get_flashed_messages() %}
+                {{ message }}
+              {% endfor %}
+            </p>
+         </div>
+        <div class="Back">
+            <a  href="{{ url_for('start') }}"> Powrót do strony głównej </a>
+        </div>
+     </div>
+     </body>

@@ -1,0 +1,91 @@
+.menuu a{
+    height: 80px;
+    margin-top: 40px;
+    float: right;
+    background-color: lightgrey;
+}
+.ulmenu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+.limenu a{
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-family: Arial;
+    width: 20%;
+    text-align: center;
+    height: 50px;
+    padding-top: 25px;
+    padding-bottom: 5px;
+    color: black;
+    text-decoration: none;
+}
+.limenu a:hover {
+    color: white;
+    background-color: darkslategrey;
+    box-shadow: 0px 2px 3px gray;
+    text-decoration: none;
+}
+
+
+.pudelko2{
+    margin-top: 60px;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-bottom: 30px;
+    text-align: center;
+
+
+}
+.pudelko3{
+    width: 50%;
+    height: 500px;
+    text-align: center;
+    margin: auto;
+    float: left;
+}
+.pudelko4{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    display: block;
+    float: right;
+}
+.text1{
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+.text2{
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.text1 a{
+    text-decoration: none;
+    color: black;
+}
+.text2 a{
+    text-decoration: none;
+    color: black;
+}
+#blank{
+    color: white;
+}
+.Footer{
+    width: 100%;
+}

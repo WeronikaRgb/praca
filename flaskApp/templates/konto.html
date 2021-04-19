@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+        <title>Korona Gór Polski</title>
+        <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+        <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+        <link rel="stylesheet" href="../static/konto.css" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body> <style> body{margin: 0px}</style>
+        <div class="TopBackgroud"> </div>
+        <div class="pudelko">
+            <div class="logo">
+                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
+            </div>
+            <div class="menu">
+                <ul class="ulmenu">
+                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
+                    <li class="limenu">
+                    {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}">
+                            KONTO  </a>
+                    {% else %}
+                        <div class="withoutLink">
+                        KONTO
+                        </div>
+                    {% endif %}
+                        <ul class="menu2">
+                            {% if current_user.is_authenticated %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="pudelko2">
+
+
+        <div class="Message">
+            <div class="col-md-8">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              {% block HEJ %}{% endblock %}
+            </div>
+        </div>
+
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ image_file }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ current_user.username }}</h2>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+      </div>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+    </div>
+    </body>
+</html>

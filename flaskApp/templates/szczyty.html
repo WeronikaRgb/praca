@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+     <head>
+         <meta charset="UTF-8" />
+         <title>Korona Gór Polski</title>
+         <link rel="icon" href="/flaskApp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/szczyty.css" type="text/css" />
+     </head>
+     <body> <style> body{margin: 0px}</style>
+        <div class="TopBackgroud">
+        </div>
+        <div class="pudelko">
+            <div class="logo">
+                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
+            </div>
+            <div class="menu">
+                <ul class="ulmenu">
+                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
+                    <li class="limenu">
+                    {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}">
+                            KONTO  </a>
+                    {% else %}
+                        <div class="withoutLink">
+                        KONTO
+                        </div>
+                    {% endif %}                        <ul class="menu2">
+                            {% if current_user.is_authenticated %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="ozdobnik2">
+            Lista szczytów KGP
+        </div>
+        <div class="tresc">
+            <table class="tabela">
+               <tr class="tabelanag"> <th>Nazwa szczytu</th><th>Wysokość</th><th>Pasmo</th></tr>
+                <tr><td>Rysy</td><td>2499 m n.p.m.</td><td>Tatry</td></tr>
+                <tr><td>Babia Góra</td><td>1725 m n.p.m.</td><td>Beskid Żywiecki</td></tr>
+                <tr><td>Śnieżka</td><td>1602 m n.p.m.</td><td>Karkonosze</td></tr>
+                <tr><td>Śnieżnik</td><td>1425 m n.p.m.</td><td>Masyw Śnieżnika</td></tr>
+                <tr><td>Tarnica </td><td>1346 m n.p.m.</td><td>Bieszczady </td></tr>
+                <tr><td>Turbacz </td><td>1310 m n.p.m.</td><td>Gorce </td></tr>
+                <tr><td>Radziejowa </td><td> 1262 m n.p.m. </td><td>Beskid Sądecki</td></tr>
+                <tr><td>Skrzyczne </td><td>1257 m n.p.m.</td><td>Beskid Śląski </td></tr>
+                <tr><td>Mogielica </td><td>1171 m n.p.m.</td><td>Beskid Wyspowy</td></tr>
+                <tr><td>Wysoka Kopa </td><td>1126 m n.p.m.</td><td>Góry Izerskie</td></tr>
+                <tr><td>Rudawiec </td><td>1112 m n.p.m.</td><td>Góry Bialskie</td></tr>
+                <tr><td>Orlica </td><td>1084 m n.p.m.</td><td>	Góry Orlickie</td></tr>
+                <tr><td>Wysoka </td><td>1050 m n.p.m.</td><td>Pieniny</td></tr>
+                <tr><td>Wielka Sowa </td><td>1015 m n.p.m.</td><td>Góry Sowie</td></tr>
+                <tr><td>Lackowa </td><td>997 m n.p.m.</td><td>Beskid Niski</td></tr>
+                <tr><td>Kowadło </td><td>989 m n.p.m.</td><td>Góry Złote</td></tr>
+                <tr><td>Jagodna</td><td>977 m n.p.m.</td><td>Góry Bystrzyckie</td></tr>
+                <tr><td>Skalnik</td><td>945 m n.p.m. </td><td>Rudawy Janowickie</td></tr>
+                <tr><td>Waligóra</td><td>936 m n.p.m.</td><td>Góry Kamienne</td></tr>
+                <tr><td>Czupel</td><td>934 m n.p.m.</td><td>Beskid Mały</td></tr>
+                <tr><td>Szczeliniec Wielki</td><td>919 m n.p.m.</td><td>Góry Stołowe</td></tr>
+                <tr><td>Lubomir </td><td>912 m n.p.m.</td><td>Beskid Makowski</td></tr>
+                <tr><td>Biskupia Kopa </td><td>889 m n.p.m.</td><td>Góry Opawskie</td></tr>
+                <tr><td>Chełmiec </td><td>869 m n.p.m.</td><td>Góry Wałbrzyskie</td></tr>
+                <tr><td>Kłodzka Góra</td><td>765 m n.p.m.</td><td>Góry Bardzkie</td></tr>
+                <tr><td>Skopiec </td><td>724 m n.p.m.</td><td>Góry Kaczawskie</td></tr>
+                <tr><td>Ślęża</td><td>718 m n.p.m.</td><td>Masyw Ślęży (Przedgórze Sudeckie)</td></tr>
+                <tr><td>Łysica</td><td>612 m n.p.m.</td><td>Góry Świętokrzyskie</td></tr>
+            </table>
+        </div>
+        <div class="BottomLine">
+        </div>
+        <div class="Footer">
+            Copyright Weronika Paterek 2021
+        </div>
+     </body>
