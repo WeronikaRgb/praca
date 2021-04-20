@@ -3,9 +3,10 @@
      <head>
          <meta charset="UTF-8" />
          <title>Korona Gór Polski</title>
-         <link rel="icon" href="/flaskApp/staticpp/static/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
          <link rel="stylesheet" href="../static/quiz.css" type="text/css" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
      </head>
      <body> <style> body{margin: 0px}</style>
         <div class="TopBackgroud">
@@ -18,7 +19,7 @@
                 <ul class="ulmenu">
                     <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
                     <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('ciekawostki') }}"> CIEKAWOSTKI </a> </li>
+                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
                     <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
                     <li class="limenu">
                     {% if current_user.is_authenticated %}
