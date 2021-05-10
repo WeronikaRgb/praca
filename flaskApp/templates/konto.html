@@ -1,121 +1,143 @@
 <!doctype html>
 <html lang="pl">
-    <head>
-        <title>Korona Gór Polski</title>
-        <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
-        <link rel="stylesheet" href="../static/basic.css" type="text/css" />
-        <link rel="stylesheet" href="../static/konto.css" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body> <style> body{margin: 0px}</style>
-        <div class="TopBackgroud"> </div>
-        <div class="pudelko">
-            <div class="logo">
-                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
-            </div>
-            <div class="menu">
-                <ul class="ulmenu">
-                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
-                    <li class="limenu">
-                    {% if current_user.is_authenticated %}
-                        <a  href="{{ url_for('konto') }}">
-                            KONTO  </a>
-                    {% else %}
-                        <div class="withoutLink">
-                        KONTO
-                        </div>
-                    {% endif %}
-                        <ul class="menu2">
+     <head>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+         <title>Korona Gór Polski</title>
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/forms.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     </head>
+
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
                             {% if current_user.is_authenticated %}
-                            <li class="menuu1"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
                             {% else %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
                             {% endif %}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Moje konto </h1>
         </div>
-    <div class="pudelko2">
 
+         <div class="Page">
 
-        <div class="Message">
-            <div class="col-md-8">
-              {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                  {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                      {{ message }}
+             <div class="Message">
+                <div class="col-md-8">
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                  {% block HEJ %}{% endblock %}
+                </div>
+             </div>
+
+                {% block content %}
+                    <div class="content-section">
+                      <div class="media">
+                        <div class="media-body">
+                          <h2 class="account-heading">{{ current_user.username }}</h2>
+                          <p class="text-secondary">{{ current_user.email }}</p>
+                        </div>
+                        <img class="ProfilePic" src="{{ image_file }}">
+                      </div>
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="admin">
+                            {% if current_user.is_admin %}
+                            <a class="AdminCon" href="{{ url_for('admin.index') }}"  > Panel administratora </a>
+                            {% endif %}
+                            </div>
+                            <h2 class="Subtitle">  Informacje o koncie </h2>
+                            <fieldset class="form-group">
+                                <div class="form-group">
+                                    {{ form.username.label(class="form-control-label") }}
+
+                                    {% if form.username.errors %}
+                                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.username.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.username(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email.label(class="form-control-label") }}
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.picture.label() }}
+                                    {{ form.picture(class="form-control-file") }}
+                                    {% if form.picture.errors %}
+                                        {% for error in form.picture.errors %}
+                                            <span class="text-danger">{{ error }}</span></br>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div class="ConfirmButton">
+                                {{ form.submit(class="btn btn-outline-info", value="Zaktualizuj") }}
+                            </div>
+                        </form>
                     </div>
-                  {% endfor %}
-                {% endif %}
-              {% endwith %}
-              {% block HEJ %}{% endblock %}
-            </div>
-        </div>
 
-{% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ image_file }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ current_user.username }}</h2>
-          <p class="text-secondary">{{ current_user.email }}</p>
-        </div>
-      </div>
-        <form method="POST" action="" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Informacje o koncie </legend>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
+                {% endblock content %}
 
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.picture.label() }}
-                    {{ form.picture(class="form-control-file") }}
-                    {% if form.picture.errors %}
-                        {% for error in form.picture.errors %}
-                            <span class="text-danger">{{ error }}</span></br>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </form>
-    </div>
-{% endblock content %}
+         </div>
 
-    </div>
-    </body>
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+
+</body>
 </html>

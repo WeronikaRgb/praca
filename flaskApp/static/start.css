@@ -1,80 +1,237 @@
-.ozdobnik1 {
-    width: 100%;
-    height: 40px;
-    background: rgb(47, 79, 79);
-    background: linear-gradient(0deg, rgba(47,79,79,1) 13%, rgba(47,79,79,1) 28%, rgba(127,147,147,1) 67%, rgba(255,255,255,1) 90%);
+/* Dodatkowa konfiguracja Menu strona główna / ze względu na bootstrap */
+.MainPage{
+    width: 250px;
+    height: 100%;
 }
-.pudelko
-{
-    background-color: darkred;
-    padding-bottom: 90px;
-    padding-top: 10px;
-}
-.logo a
-{
-    width:20%;
-    height: 80px;
-    float: left;
-    background-color: darkred;
-    font-size: 25px;
-    text-decoration: none;
+.MainPage a:hover{
     color: white;
-    text-align: center;
-    font-family: Arial, serif;
-    line-height: 80px;
-
-}
-.logo a:hover{
     text-decoration: none;
-    color: white;
 }
-.menu
-{
-    background-color: white;
-    width:80%;
-    height: 80px;
-    float: right;
 
+/* Dodatkowa konfiguracja Menu ze względu na bootstrap */
+.Nav a:hover{
+    height: 80px;
 }
-.ulmenu {
+
+.SubpageColumnNav{
     padding: 0;
-    margin: 0;
-    list-style: none;
+}
+
+
+/* Container na tytuł strony */
+.ColorBackground {
+    border-bottom: 4px solid whitesmoke;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 0;
+    display: flex;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 40%, rgba(0,0,0,1) 40%);
+}
+
+/*  Obrazek na początku */
+.SubpageTitleBackground {
+    height: 75%;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: auto;
+    margin-right: 40px;
+}
+
+/* Zbiornik na tytuł strony */
+.Title{
+    width: 40%;
+    height: 100%;
+    display: block
+}
+
+/* Tytuł napis */
+.SubpageTitle{
+    color: black;
+    text-align: center;
+    padding-left: 30px;
+    font-size: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: auto;
+}
+
+.About{
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: justify;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 18px;
+    padding-left: 300px;
+    padding-right: 300px;
+    margin-bottom: 0;
+}
+
+/* cytat na pcozatku */
+.Quotation{
+    font-style: italic;
+}
+.AuthorName{
+    padding-top: 10px;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+/*karuzela zdjęć */
+.Carousel{
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Page2{
+    padding-top: 60px;
+    background-color: whitesmoke;
+}
+.Page{
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-bottom: 0;
+}
+
+
+.BackgroundContainer{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 400px;
+    color: black;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+
+.Text{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    height: 60%;
+    width: 50%;
+    background-color: whitesmoke;
+    color: black;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.Mistakes{
+    background-color: white;
+    color: black;
+    margin-right: 320px;
+    margin-left: 320px;
+    margin-top: 0;
 
 }
-.limenu a{
+
+.MistakesBox{
     display: block;
-    float: left;
-    font-size: 20px;
-    font-family: Arial, serif;
-    width: 20%;
-    text-align: center;
-    height: 50px;
-    padding-top: 25px;
-    padding-bottom: 5px;
-    color: black;
-    text-decoration: none;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: blue;
+    height: 100%;
+
+
 }
-.limenu a:hover{
+
+.MistakeBox{
+    width:30%;
+    display: inline-block;
+    background-color: black;
     color: white;
+    text-align: justify;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+
+}
+
+.MistakeBox2{
+    width:30%;
+    display: inline-block;
+    background-color: whitesmoke;
+    text-align: justify;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.MistakeBox3{
+    width:30%;
+    display: inline-block;
     background-color: darkslategrey;
-    box-shadow: 0 2px 3px gray;
-    text-decoration: none;
-    height: 80px;
-    margin-bottom: -30px;
+    color: white;
+    text-align: justify;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.ozdobnik2
-{
-    background-image: url("../static/pics/ozdobnik2.jpg");
-    width:100%;
-    height: 200px;
+
+
+.Ciekawostki{
+    background-color: whitesmoke;
     text-align: center;
-    font-size: 80px;
-    font-family: Arial, serif;
-    color: whitesmoke;
-    display: block;
-    line-height: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: black;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 18px;
+
 }
+.pudełko{
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    padding: 20px;
+    background-color: white;
+    color: black;
+    text-align: justify;
+}
+
+.pudeleczko{
+    padding: 20px;
+}
+
+.ParagraphTitle{
+
+}
+
+@media all and (max-width: 1200px) {
+
+}
+@media all and (max-width: 900px) {
+    .MainPage{
+        width: 100%;
+    }
+}
+@media all and (max-width: 480px) {}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .tresc
 {
@@ -82,24 +239,26 @@
     margin-left: 80px;
     margin-top: 30px;
     background-color: coral;
-
-
+    font-family: Arial;
 }
 .tresc2{
     margin-right: 80px;
     margin-left: 80px;
     display: inline-flex;
 }
+
+
 .naglowek1{
     border-width: medium;
     border-bottom-style: solid;
     border-color: darkred;
+    padding-left: 20px;
 }
 .firstleft
 {
     display: block;
-    margin-right: 250px;
-    margin-left: 250px;
+    margin-right: 215px;
+    margin-left: 215px;
     margin-bottom: 20px;
     font-size: medium;
     background-color: lightgrey;
@@ -119,8 +278,6 @@
     float: left;
     width: 100%;
     margin-bottom: 20px;
-    font-size: medium;
-    text-align: center;
     background-color: beige;
 }
 
@@ -132,9 +289,24 @@
     font-size: medium;
     margin-left: auto;
     margin-right: auto;
-    background-color: lightskyblue;
+    font-family: Arial;
 }
 
+.four
+{
+    margin-top: 180px;
+    display: block;
+    width: 55%;
+    margin-bottom: 30px;
+    font-size: medium;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: lightcoral;
+    font-family: Arial;
+}
+.h2{
+    font-weight: bold;
+}
 
 .ozdobnik3{
     width: 100%;
@@ -143,18 +315,9 @@
     border-bottom-width: 5px;
 }
 
-.karuzelka{
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
 
-.stopka
-{
-    background-color: darkslategrey;
-    width:100%;
-    height: 100px;
-    text-align: center;
-}
+
+
 
 .menuu3{
     text-decoration: none;
@@ -196,3 +359,4 @@
     padding-top: -30px;
     background-color: lightgrey;
 }
+

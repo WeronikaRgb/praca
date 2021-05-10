@@ -1,3 +1,9 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+/* Gradient na początku strony  */
 .TopBackgroud {
     height: 40px;
     width: 100%;
@@ -5,127 +11,163 @@
     background: linear-gradient(0deg, rgba(47,79,79,1) 13%, rgba(47,79,79,1) 28%, rgba(127,147,147,1) 67%, rgba(255,255,255,1) 90%);
 }
 
-.pudelko
+/* Menu główne - nawigacja strony  */
+.Nav ul
 {
-    background-color: darkred;
-    padding-bottom: 90px;
-    padding-top: 10px;
-}
-
-.logo a
-{
-    width:20%;
-    height: 80px;
-    float: left;
-    background-color: darkred;
-    font-size: 25px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-family: Arial;
-    line-height: 80px;
-
-}
-.logo a:hover{
-    text-decoration: none;
-    color: white;
-}
-.menu
-{
-    background-color: white;
-    width: 80%;
-    height: 80px;
-    float: right;
-    line-height: 30px;
-}
-.ulmenu {
-    padding: 0;
+	background-color: white;
+	list-style-type: none;
+	font-size: 20px;
+	display: flex;
+	text-align: center;
+    border-bottom-width: 10px;
+    border-top-width: 10px;
+    border-bottom-color: black;
+    border-top-color: black;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 40px;
+    padding-left: 0;
     margin: 0;
-    list-style: none;
+}
 
+.Nav ul a
+{
+	color: black;
+	text-decoration: none;
+	display: block;
+	padding: 20px;
 }
-.limenu a{
-    display: block;
-    float: left;
-    font-size: 20px;
-    font-family: Arial;
-    width: 20%;
-    text-align: center;
-    height: 50px;
-    padding-top: 25px;
-    padding-bottom: 5px;
-    color: black;
-    text-decoration: none;
+
+.Nav ul > li
+{
+	float: left;
+	width: 250px;
+	height: 80px;
+	flex: 1;
 }
-.limenu a:hover{
+
+.Nav ul > li:hover
+{
+    background-color: darkslategrey;
+    transition: all 1s ease;
+}
+
+.Nav a:hover{
     color: white;
     background-color: darkslategrey;
-    box-shadow: 0px 2px 3px gray;
+    box-shadow: 0 2px 3px gray;
     text-decoration: none;
-    height: 50px;
+    height: 40px;
+    transition: all 0.5s ease;
 }
 
-.menu2{
- text-decoration: none;
+/* Menu główne - część Strona Główna  */
+.MainPage{
+    width: 230px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    float: left;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    background-color: black;
+    list-style-type: none;
+	text-align: center;
+    border-bottom-width: 10px;
+    border-top-width: 10px;
+    border-bottom-color: black;
+    border-top-color: black;
+    border-bottom-style: solid;
+    border-top-style: solid;
 }
-.menuu{
+.MainPage a{
+    background-color: black;
+    color: white;
     text-decoration: none;
-    list-style-type: none
+
 }
-.menuu a{
-    text-decoration: none;
-    display: block;
-    color: black;
+
+/* Menu główne - część bez linku (Konto) */
+.SubpageNoLink{
+    line-height: 80px;
+    height: 80px;
+    background-color: white;
+}
+
+/* Menu główne - część rozwijana (login, logout, register) */
+.SubpageColumn{
     background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
     position: relative;
-    float: right;
-    margin-top: 10px;
-    margin-right: 0px;
 }
 
-
-ul > li > ul {
+ul > li > ol {
   display:none;
 }
 
-ul > li:hover > ul {
+ul > li:hover > ol {
   display:block;
 }
 
-ul > li > ul > li {
-    height: 170px;
-    margin-top: 0px;
-
+.SubpageColumnNav{
+    padding-top: 10px ;
 }
 
-ul > li:first-child {
-  margin-left:0;
-}
-
-.withoutLink{
-    text-decoration: none;
-    display: block;
-    float: left;
-    font-size: 20px;
-    font-family: Arial;
-    width: 20%;
+/* Tytuł podstrony (w h1) */
+.SubpageTitle{
     text-align: center;
-    height: 50px;
-    padding-top: 25px;
-    padding-bottom: 5px;
-    color: black;
+    font-size: 20px;
+    font-weight: normal;
+    font-family: "Open Sans", sans-serif;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
+/* Treść strony (główny container) */
+.Page{
+    display: block;
+    margin-right: 320px;
+    margin-left: 320px;
+    margin-bottom: 30px;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}
 
-.BottomLine {
-    width: 100%;
-    border-bottom:darkred ;
+/* Podtytuł (w h2) */
+.Subtitle{
+    margin-bottom: 20px;
+    padding-left: 30px;
+    border-width: medium;
     border-bottom-style: solid;
-    border-bottom-width: 5px;
-
+    border-color: darkslategrey;
+    font-family: "Open Sans", sans-serif;
 }
 
+/* Pierwszy paragraf strony (pod podtytułem) */
+.FirstParagraph{
+    font-family: 'Alata', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Kolejny podtytuł (h3) */
+.ParagraphTitle{
+    padding-left: 5px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+
+/* Stopka */
 .Footer {
+    padding-top: 10px;
     background-color: darkslategrey;
     color: #333;
     height: 100px;
@@ -135,52 +177,109 @@ ul > li:first-child {
     line-height: 1.42857143;
 }
 
-@media (max-width: 750px) {
-    .logo a {
-    width:100%;
-    height: 80px;
-    float: left;
-    background-color: darkred;
-    font-size: 25px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-family: Arial;
-    line-height: 80px;}
 
-    .logo a:hover{
-    text-decoration: none;
-    color: white;}
-
-    .limenu a{
-    width:100%;
-    height: 80px;
-        float: left;
-    background-color: lightskyblue;
-    font-size: 25px;
-    text-decoration: none;
-    color: black;
-    text-align: center;
-    font-family: Arial;
-    line-height: 80px;}
-
-    .limenu a:hover{
-    color: white;
-    background-color: greenyellow;
-    text-decoration: none;}
-
-    .menu {
-    background-color: white;
-    width: 100%;
-    height: 80px;
-    float: right;
-    line-height: 30px;}
-
-    .ulmenu {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-
+@media all and (max-width: 1200px) {
+    .MainPage{
+        height: 60px;
+        line-height: 60px;
+    }
+    .Nav ul > li{
+        height: 100px;
+        line-height: normal;
+    }
+    .Nav a:hover{
+        height: 60px;
+    }
+    .SubpageNoLink {
+        height: 100px;
+    }
+    .SubpageColumn a:hover{
+        height: 30px;
+    }
+    .Page {
+        margin-right: 200px;
+        margin-left: 200px;
+    }
 }
 
+@media all and (max-width: 900px) {
+    .TopBackgroud {
+        width: 100%;
+    }
+    .MainPage{
+        float: left;
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+    }
+    .MainPage a{
+        margin-left: auto;
+        margin-right: auto;
+    }
+	.Nav ul{
+		flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .Nav ul > li{
+        width: 100%;
+    }
+    .Nav a:hover{
+        height: 30px;
+    }
+    .Subpage {
+        margin-left: auto;
+        margin-right: auto;
+        border-left-style: none;
+        border-right-style: none;
+        border-top-style: none;
+        border-bottom: 2px;
+        border-bottom-style: solid;
+        border-color: #999999;
+    }
+    .SubpageNoLink {
+        height: 80px;
+    }
+    .Page {
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+}
+
+@media all and (max-width: 480px){
+    .TopBackgroud {
+        width: 100%;
+    }
+    .MainPage{
+        float: left;
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+    }
+    .MainPage a{
+        margin-left: auto;
+        margin-right: auto;
+    }
+	.Nav ul{
+		flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .Nav ul > li{
+        width: 100%;
+    }
+    .Subpage {
+        margin-left: auto;
+        margin-right: auto;
+        border-left-style: none;
+        border-right-style: none;
+        border-top-style: none;
+        border-bottom: 2px;
+        border-bottom-style: solid;
+        border-color: #999999;
+    }
+    .Page {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
 }

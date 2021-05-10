@@ -1,156 +1,225 @@
 <!doctype html>
-<html>
+<html lang="pl">
      <head>
-          <meta charset="UTF-8" />
-          <title>Korona Gór Polski</title>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+         <title>Korona Gór Polski</title>
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
-          <link rel="stylesheet" href="../static/start.css" type="text/css" />
-          <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="../static/start.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
      </head>
+
+    <div class="TopBackgroud"> </div>
+
      <body>
-        <div class="ozdobnik1">
-        </div>
-        <div class="pudelko">
-            <div class="logo">
-                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
-            </div>
-            <div class="menu">
-                <ul class="ulmenu">
-                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
-                    <li class="limenu">
-                        {% if current_user.is_authenticated %}
-                        <a  href="{{ url_for('konto') }}"> KONTO  </a>
-                        {% else %}
-                            <div class="withoutLink">
-                                KONTO
-                            </div>
-                        {% endif %}
-                        <ul class="menu2">
+
+         <div class="MainPage">
+            <a class="MainPageControl" href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
                             {% if current_user.is_authenticated %}
-                            <li class="menuu3"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
                             {% else %}
-                            <li class="menuu1"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
-                            <li class="menuu2"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
                             {% endif %}
-                        </ul>
-                    </li>
-                </ul>
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="ColorBackground">
+             <div class="Title">
+                 <h1 class="SubpageTitle"> KORONA GÓR POLSKI </h1>
+             </div>
+            <div class="SubpageTitleBackground">
+               <img src="../static/pics/MainPagePhoto.jpg" alt="Góry">
             </div>
-        </div>
-        <div class="ozdobnik2">
-            KORONA GÓR POLSKI
-        </div>
-        <div class="tresc">
-            <div class="firstleft">
-                <h1 class="naglowek1">   Siemanko witam w mojej kuchni! </h1>
-                    Korona Gór Polski to 28 szczytów poszczególnych pasm górskich w Polsce. W założeniu miała to być lista zawierająca najwyższy szczyt każdego pasma. No i przeważnie tak jest, ale kilka szczytów, które widnieją na liście, nie jest najwyższym wzniesieniem w swoich górach. Między innymi w Górach Wałbrzyskich najwyższym szczytem jest Borowa, a nie Chełmiec, w Górach Bardzkich Szeroka Góra, a nie Kłodzka Góra.
-                    Dlaczego tak jest? Takie nieścisłości biorą się z tego, że za istotne uznano te z najwyższych szczytów, na które w chwili ustalania Korony prowadził znakowany szlak turystyczny. No i brana wówczas była pod uwagę nie tylko wysokość szczytów, ale także ich dostępność i atrakcyjność krajoznawcza. A co do samych wysokości – wciąż pojawiają się nowe dane, uzyskiwane przez różne jednostki prowadzące pomiary (teraz także te satelitarne), wobec których nie ma pełnej zgodności, nawet wśród specjalistów-naukowców. Nie zmieniany jest jednak pierwotny zestaw koronnych szczytów, dzięki któremu i tak poznawane są pasma górskie, na które dawniej mało kto wchodził.
-                    SIEMA, korona gór polski, fajna polecam bedzie to tamto siamto sprawdz se i CZYTAJ UWAŻNIE  BO BĘDZIE QUIZ
+         </div>
+
+         <div class="About">
+             <h2 class="Subtitle">   Cześć górom! </h2>
+            <div class="Quotation">
+                Góry mają w sobie coś magicznego, człowiek nie zje, nie dośpi, pachnie coraz gorzej, ale nie chce przestać się wspinać. W górach liczy się tylko tu i teraz. Nikt nic ode mnie nie chce, telefon nie&nbspdzwoni, a ja czuję, że z każdym krokiem przekraczam granicę swoich możliwości. Kiedy&nbspna&nbsppoczątku wspinaczki człowiek stoi przed szczytem i patrzy na potężną górę, czuje się przytłoczony. Kiedy patrzy na tę samą górę już po zejściu- jest dumny i ma wrażenie, że może osiągnąć wszystko...
             </div>
+           <p class="AuthorName"> - Martyna Wojciechowska, Przesunąć horyzont </p>
+           <p>Cytat ten stanowi idealny opis odczuć, które towarzyszą człowiekowi podczas zdobywania górskich szczytów. Wędrówki po górach kształtują nie tylko ciało, ale również umysł i duszę.
+            Mają one wiele zalet, dlatego warto je popularyzować. Taki cel obrali pomysłodawcy Korony&nbspGór&nbspPolski.</p>
+         </div>
 
-            <div class="second">
-              <h2>  Idea korony gór polski  </h2>
-                   <p>Ideą Korony Gór Polskich jest propagowanie turystyki krajoznawczej. </p>
-                    <br> Ogłoszenie Korony Gór Polski miało na celu nie tylko odciążenie najpopularniejszych gór na czele z Tatrami i spopularyzowanie wielu innych, atrakcyjnych, lecz nieznanych pasm, ale także dogłębne poznanie tych rejonów kraju, z ich historią, przyrodą, geologiczną przeszłością i współczesną kulturą.
-            </div>
-        </div>
 
-        <div class="tresc2">
-            <div class="third">
-                <h2 class="naglowek1">  Historia  </h2>
+         <div class="Page">
 
-                Koncepcja została przedstawiona w 1997 r. przez Marka Więckowskiego i Wojciecha Lewandowskiego w czerwcowym numerze czasopisma „Poznaj swój kraj”.
-               <br> Poznaj swój kraj to polski miesięcznik krajoznawczo-turystyczny, stawiający sobie za cel promocję różnych regionów Polski, odkrywanie nieznanych atrakcyjnych zakątków oraz popularyzację turystyki kwalifikowanej, czyli takiej, której uprawianie wymaga specjalnego przygotowania psychofizycznego, zahartowania na trudy, umiejętności zachowania się w środowisku naturalnym i w obiektach turystycznych, a w niektórych przypadkach potwierdzonej przez właściwe organizacje umiejętności posługiwania się sprzętem turystycznym.
-                <br> Korona Gór Polski zatwierdzona została 13 grudnia 1997 r. na specjalnym spotkaniu zwołanym przez redakcję „Poznaj swój kraj”, inaugurującym jednocześnie powstanie Klubu Zdobywców Korony Gór Polski.
 
-            </div>
+             <h2 class="Subtitle">   Czym jest Korona Gór Polski? </h2>
+             <p class="FirstParagraph"> Korona Gór Polski to lista 28 szczytów poszczególnych pasm górskich w Polsce.  </p>
 
-        </div>
+             <h5 class="ParagraphTitle"> Co decydowało o wpisaniu szczytu na listę?</h5>
+             Szczyty wpisane na listę są najczęściej najwyższymi w swoich pasmach. Są to szczyty, na które (w chwili ustalania Korony) prowadził znakowany szlak turystyczny. Istotną kwestią przy wyborze szczytów była również ich dostępność i atrakcyjność krajoznawcza.
 
-    <div class="first">
-<h2 class="naglowek">Błędy w pomiarach.</h2>
-Pierwszą taką kontrowersją można powiedzieć, jest umieszczenie w koronie - Chełmca, którego punkt pomiarowy znajdował się na 18-metrowej wieży widokowej i dzięki temu został uznany za najwyższy w Górach Wałbrzyskich, jednak w rzeczywistości najwyższa jest Borowa.
-Jako najwyższy szczyt Gór Bardzkich figuruje Kłodzka Góra, chociaż nowsze pomiary wykazały, że wyższa jest położona nieopodal Szeroka Góra.
-Najwyższym szczytem Gór Bystrzyckich wcale nie jest Jagodna (977 m n.p.m) ale do tej pory nienazwany formalnie wierzchołek o wysokości 985 m n.p.m. (na niektórych mapach jest on błędnie oznaczony jako Sasanka, która faktycznie leży 400 m na północny wschód od niego).
-Także według nowych pomiarów najwyższym szczytem Gór Kaczawskich jest Góra Folwarczna (722 m n.p.m.), uważany wcześniej za wyższy Skopiec ma tylko 718,6 m n.p.m.
+             <h5 class="ParagraphTitle">Pomysłodawcy KGP</h5>
+             Koncepcja została przedstawiona w 1997 r. przez Marka Więckowskiego i Wojciecha Lewandowskiego w czerwcowym numerze czasopisma „Poznaj swój kraj”.
 
-<h2 class="naglowek">Dalsze cele</h2>
-No a jeżeli ktoś już jest bardziej zaawansowany i korona gór polskich to dla niego żaden problem to może spróbować swoich sił w zdobywaniu Wielkiej Korony Tatr.  Pomimo iż w tym spisie występuje o połowę mniej szczytów niż w Koronie Gór Polski, czyli jest ich 14, to jest on o wiele trudniejszy do zrealizowania.  Trudność polega na wysokości szczytów, ponieważ do listy tej mogą należeć szczyty o wysokości powyżej 2438 metrów nad poziomem morza, w porównaniu, w koronie gór polski większość szczytów jest poniżej 1000 metrów.
-Korona Europy to spis najwyższych szczytów poszczególnych państw Europy. Korona Ziemi analogicznie, najwyższe szczyty poszczególnych kontynentów. No i na koniec Korona Himalajów i Karakorum, czyli 14 głównych szczytów o wysokości ponad 8 tysięcy metrów. To są już ogromne, wymagające determinacji wyzwana dla najlepszych alpinistów, a zarazem cel, który w obecnych czasach pozostaje w zasięgu możliwości również tych zapalonych amatorów.
+             <h5 class="ParagraphTitle"> Czasopismo Poznaj swój kraj </h5>
+             <p> Poznaj swój kraj to polski miesięcznik krajoznawczo-turystyczny. Jego wyjątkowość opiera się na tym, że jako krajoznawczy jest jedynym, a jako turystyczny najstarszym w Polsce. Jego początki sięgają 1958 roku. </p>
+             <p> Artykuły tego czasopisma promują Polskę, jej poszczególne regiony oraz turystykę.</p>
+             <p> Stałe rubryki miesięcznika to m. in.  Wyprawa z plecakiem, Sposób na wycieczkę, Polskie miasta. W czasopiśmie ukazuje się również felieton prof.  Jerzego Bralczyka, w którym wyjaśnia on pochodzenie słów powiązanych z turystyką i krajoznawstwem.</p>
 
- <h2 class="naglowek">Dlaczego warto?</h2>
 
-Wędrówki po górach bardzo często oznaczają pokonywanie własnych słabości i ograniczeń. Są swego rodzaju próbą charakteru. Podejmowanie coraz trudniejszych wyzwań i zmierzanie się z coraz większymi przeszkodami wykształca w nas wolę walki. Nie szkodzi, że pot spływa z czoła, bolą wszystkie mięśnie, a wiatr niemiłosiernie smaga naszą twarz. Determinacja, by zdobyć szczyt jest ogromna.
-Kolejną zaletą są korzyści zdrowotne Chodzenie po górach zdecydowanie poprawia naszą kondycję. Umacnia nasze mięśnie. Nasz organizm jest lepiej dotleniony. Układ oddechowy, krwionośny i nerwowy zaczyna sprawniej pracować. Wędrówki górskie to doskonała opcja dla osób cierpiących na nieustannie powracające choroby górnych dróg oddechowych. Takie spacery poprawiają także naszą kondycję psychiczną
+             <h5 class="ParagraphTitle">Oficjalne powstanie KGP</h5>
+             Korona Gór Polski zatwierdzona została 13 grudnia 1997 r. na specjalnym spotkaniu zwołanym przez redakcję „Poznaj swój kraj”, inaugurującym jednocześnie powstanie Klubu Zdobywców Korony Gór Polski.
+
+             <h5 class="ParagraphTitle">Idea korony gór polski</h5>
+             <p>Ideą Korony Gór Polski jest propagowanie turystyki krajoznawczej. </p>
+             <p>Ogłoszenie Korony Gór Polski miało na celu nie tylko odciążenie najpopularniejszych gór na czele z Tatrami i spopularyzowanie wielu innych, atrakcyjnych, lecz nieznanych pasm, ale także dogłębne poznanie tych rejonów kraju, z ich historią, przyrodą, geologiczną przeszłością i współczesną kulturą. </p>
 
          </div>
 
-        <div class="karuzelka">
-            <div class="container">
-              <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
+         <div class="Ciekawostki">
+                 <h2> Ciekawostki </h2>
 
-                  <div class="item active">
-                    <img src="../static/pics/karuzela1.jpg" alt="szlak na Mogielice" style="width:100%; height:400px;">
-                    <div class="carousel-caption">
-                        <h3> <a  href="{{ url_for('szczyty') }}"> Szczyty </a> </h3>
-                      <p>Sprawdź, które szczyty znajdują się na liście KGP! </p>
-                    </div>
+
+
+
+{#         <div class="Container2">#}
+{#             <div class="Mistakes">#}
+{#                 <h2 class="Subtitle">  Błędy w pomiarach </h2>#}
+{#                 <p>Bieg czasu spowodował rozwój technologii, która pozwala na dokładniejsze pomiary wysokości szczytów.  W związku z tym, pojawiły się nieścisłości co do najwyższych szczytów danych pasm. </p>#}
+{#             </div>#}
+{##}
+{#             <div class="MistakesBox">#}
+{##}
+{#                <div class="MistakeBox">#}
+{#                    Chełmiec#}
+{#                  <p>  Chełmiec wpisany jest na listę jako najwyższy szczyt pasma Gór Wałbrzyskich.  Jego wysokość jednak budzi wątpliwość, ponieważ pomiary zostały wykonane na wieży widokowej, mierzącej 18 metrów. Najwyższym szczytem Gór Wałbrzyskich jest Borowa.</p>#}
+{#                </div>#}
+{##}
+{#                <div class="MistakeBox">#}
+{#                    Jagodna#}
+{#                    Niejasnym wyborem było umieszczenie na liście szczytu Jagodna o wysokości 977 m n.p.m. Najwyższym szczytem Gór Bystrzyckich jest szczyt , którego wysokość wynosi 985 m n.p.m, jednak nie posiada on swojej formalnej nazwy. Jest on często mylony z Sasanką, która jest oddalona od niego o 400 metrów. </div>#}
+{##}
+{#                <div class="MistakeBox">#}
+{#                    Kłodzka Góra#}
+{#                    Według listy KGP najwyższym szczytem Gór Bardzkich jest Kłodzka Góra. Według nowych badań jej miejsce powinna zająć Szeroka Góra. </p>#}
+{#                </div>#}
+{#             </div>#}
+{#         </div>#}
+        <div class="pudełko">
+         <div class="pudeleczko">
+             <h2 class="Subtitle">  Błędy w pomiarach  </h2>
+             <p class="FirstParagraph"> Bieg czasu spowodował rozwój technologii, która pozwala na dokładniejsze pomiary wysokości szczytów. W związku z tym, pojawiły się nieścisłości co do najwyższych szczytów danych pasm. </p>
+             <h5 class="ParagraphTitle">Chełmiec</h5>
+        Chełmiec wpisany jest na listę jako najwyższy szczyt pasma Gór Wałbrzyskich. Jego wysokość jednak budzi wątpliwość, ponieważ początkowe pomiary zostały wykonane na wieży widokowej, mierzącej 18 metrów.  Rzeczywista wysokość Chełmca wynosi 851 m n.p.m. Najwyższym szczytem Gór Wałbrzyskich jest Borowa (853 m n.p.m.).
+             <h5 class="ParagraphTitle">Lubomir</h5>
+        Lubomir w oryginalnej liście KGP widnieje jako szczyt o wysokości 912m n.p.m., jednak najnowsze badania wykazały, że ma on 904 m n.p.m.
+             <h5 class="ParagraphTitle"> Kłodzka Góra </h5>
+        Według listy KGP najwyższym szczytem Gór Bardzkich jest Kłodzka Góra (w liście KGP - 765 m n.p.m.).  W rzeczywistości wysokość tego szczytu to 757 m n.p.m., w związku z czym miejsce na liście powinna zająć Szeroka Góra (765 m n.p.m.).
+
+         </div>
+         <div class="pudeleczko">
+             <h2 class="Subtitle"> Dalsze cele </h2>
+             <p class="FirstParagraph">  Korona Gór Polski to zaledwie wstęp do ogromu szczytów do pokonania, tych w Polsce i na całym świecie.</p>
+
+             <h5 class="ParagraphTitle">Wielka Korona Tatr </h5>
+             <p> Dla zaawansowanych miłośników gór celem może być Wielka Korona Tatr. Wszystkie należące do niej szczyty, a jest ich 14, są wyższe niż 8000 stóp angielskich (2438,4 m). Najniższym szczytem jest  Pośrednia Grań o wysokości 2441 m n.p.m., zaś najwyższym Gerlach  (2655 m n.p.m.). </p>
+
+             <h5 class="ParagraphTitle">Korona Świata </h5>
+             <p>Poważnym wyzwaniem jest zdobycie Korony Świata. Jako pierwszy zdobył ją Richard Bass. Pokonał on 7 najwyższych szczytów z każdego kontynentu. Ostatnim z siedmiu zdobytym przez niego szczytem był najwyższy szczyt świata, czyli Mount Everest (8848 m n.p.m.) w Azji. </p>
+         </div>
+         </div>
+          </div>
+
+         <div class="Carousel">
+         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../static/pics/karuzela1.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5> <a  href="{{ url_for('szczyty') }}"> Szczyty </a> </h5>
+                <p>Sprawdź, które szczyty znajdują się na liście KGP!</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../static/pics/karuzela2.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </h5>
+                <p>Dowiedz się jak dołączyć do Klubu Zdobywców Korony Gór Polski!</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../static/pics/karuzela3.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5><a  href="{{ url_for('galeria') }}"> Galeria </a></h5>
+                <p>Obejrzyj piękne zdjęcia w galerii!</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+                  <img src="../static/pics/karuzela2.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5><a  href="{{ url_for('quiz') }}"> Quiz </a></h5>
+                    <p>Spróbuj swoich sił w quizie wiedzy o KGP!</p>
                   </div>
-
-                  <div class="item">
-                    <img src="../static/pics/karuzela2.jpg" alt="Czupel" style="width:100%; height:400px;">
-                    <div class="carousel-caption">
-                      <h3><a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </h3>
-                      <p>Dowiedz się jak dołączyć do Klubu Zdobywców Korony Gór Polski!</p>
-                    </div>
+                </div>
+            <div class="carousel-item">
+                  <img src="../static/pics/karuzela2.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5><a  href="{{ url_for('ostronie') }}"> O stronie </a></h5>
+                    <p>Przeczytaj informacje o stronie!</p>
                   </div>
+                </div>
+            <div class="carousel-item">
+                  <img src="../static/pics/karuzela2.jpg" class="d-block w-100" alt="..." style="width:100%; height:400px;">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5><a  href="{{ url_for('register') }}"> Rejestracja </a> i <a  href="{{ url_for('login') }}"> Logowanie </a></h5>
+                    <p>Zaloguj się na stronie, aby uzyskać dodatkowe możliwości. Jeżeli nie masz konta zarejestruj się.</p>
+                  </div>
+                </div>
+          </div>
 
-                  <div class="item">
-                    <img src="../static/pics/karuzela3.jpg" alt="Skrzyczne" style="width:100%; height:400px;">
-                    <div class="carousel-caption">
-                      <h3> <a  href="{{ url_for('quiz') }}"> Quiz </a> </h3>
-                      <p>Spróbuj swoich sił w quizie wiedzy o KGP!</p>
-                    </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+         </div>
+         </div>
 
-      </div>
-      </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-    <div>
-
-    </div>
-
-        </div>
-        <div class="ozdobnik3">
-        </div>
-        <div class="stopka">
-            Copyright Weronika Paterek 2021
-        </div>
-     </body>
-</html>
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+</body>

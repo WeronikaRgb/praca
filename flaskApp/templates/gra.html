@@ -1,56 +1,69 @@
 <!doctype html>
-<html>
+<html lang="pl">
      <head>
          <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
-         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
-         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
          <link rel="stylesheet" href="../static/gra.css" type="text/css" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
      </head>
-     <body> <style> body{margin: 0px; background-color: darkslategrey;}</style>
-     <div class="All">
-         <div class="Title">
-                Quiz
-         </div>
-          <div class="BottomLine">
-          </div>
-         <div class="Content">
-             <!-- formularz z quizem -->
-             <form method="POST">
-             <!-- przeglądamy listę pytań -->
-             {% for p in pytania %}
-              <p>
-                <!-- wyświetlamy treść pytania -->
-                {{ p.pytanie }}
-                <br>
-                <!-- zapamiętujemy numer pytania licząc od zera -->
-                {% set pnr = loop.index0 %}
-                <!-- przeglądamy odpowiedzi dla danego pytania -->
-                {% for o in p.odpowiedzi %}
-                  <label>
-                    <!-- odpowiedzi wyświetlamy jako pole typu radio -->
-                    <input type="radio" value="{{ o }}" name="{{ pnr }}">
-                    {{ o }}
-                  </label>
-                  <br>
-                {% endfor %}
-              </p>
-              {% endfor %}
-            <!-- przycisk wysyłający wypełniony formularz -->
-            <button type="submit">Sprawdź odpowiedzi</button>
-            </form>
-         </div>
-         <div class="Results">
-             <!-- wyświetlamy komunikaty z funkcji flash -->
-            <p>
-              {% for message in get_flashed_messages() %}
-                {{ message }}
-              {% endfor %}
-            </p>
-         </div>
+
+     <div class="TopBackgroud"> </div>
+
+     <body> <style> body{background-color: darkslategray}</style>
+
+        <div class="SubpageTitle">
+           <h1> Quiz </h1>
+        </div>
+
+        <div class="DecorativeLine"> </div>
+
+    <div class="All">
+
+
+        <div class="Page">
+
+            <div class="Questions">
+                {% block content %}
+
+                <form method="POST">
+                    {% for p in quiz %}
+                      <div class="questionControl">
+                        <p class="Question">{{ p['Question'] }}</p>
+
+                        {% set pnr = loop.index0 %}
+                        {% for o in p["Answers"] %}
+                          <label class="Answer">
+                            <input class="Input" type="radio" value="{{ o }}" name="{{ pnr }}" required>  {{ o }}
+                          </label>
+                          <br>
+                        {% endfor %}
+                      </div>
+                    {% endfor %}
+                    {% if quiz is defined and quiz|length %}
+                    <button class="Button" type="submit">Sprawdź odpowiedzi</button>
+                    {% endif %}
+                </form>
+                    <div class="Results">
+                        <!-- wyświetlamy komunikaty z funkcji flash -->
+                    <p>
+                      {% for message in get_flashed_messages() %}
+                        {{ message }}
+                      {% endfor %}
+                    </p>
+                    </div>
+                {% endblock content %}
+            </div>
+        </div>
+
+
         <div class="Back">
             <a  href="{{ url_for('start') }}"> Powrót do strony głównej </a>
         </div>
-     </div>
-     </body>
+</div>
+
+</body>

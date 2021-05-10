@@ -2,52 +2,60 @@
 <html lang="pl">
      <head>
          <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
-         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
          <link rel="stylesheet" href="../static/szczyty.css" type="text/css" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alatsi&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
      </head>
-     <body> <style> body{margin: 0px}</style>
-        <div class="TopBackgroud">
-        </div>
-        <div class="pudelko">
-            <div class="logo">
-                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
-            </div>
-            <div class="menu">
-                <ul class="ulmenu">
-                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
-                    <li class="limenu">
-                    {% if current_user.is_authenticated %}
-                        <a  href="{{ url_for('konto') }}">
-                            KONTO  </a>
-                    {% else %}
-                        <div class="withoutLink">
-                        KONTO
-                        </div>
-                    {% endif %}                        <ul class="menu2">
-                            {% if current_user.is_authenticated %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
-                            {% else %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
-                            {% endif %}
-                        </ul>
-                    </li>
 
-                </ul>
-            </div>
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Lista szczytów Korony Gór Polski</h1>
         </div>
-        <div class="ozdobnik2">
-            Lista szczytów KGP
-        </div>
-        <div class="tresc">
-            <table class="tabela">
-               <tr class="tabelanag"> <th>Nazwa szczytu</th><th>Wysokość</th><th>Pasmo</th></tr>
+
+        <div class="Page">
+           <table class="Table">
+               <tr class="TableTitle"> <th>Nazwa szczytu</th><th>Wysokość</th><th>Pasmo</th></tr>
                 <tr><td>Rysy</td><td>2499 m n.p.m.</td><td>Tatry</td></tr>
                 <tr><td>Babia Góra</td><td>1725 m n.p.m.</td><td>Beskid Żywiecki</td></tr>
                 <tr><td>Śnieżka</td><td>1602 m n.p.m.</td><td>Karkonosze</td></tr>
@@ -79,16 +87,13 @@
             </table>
         </div>
 
-         <div class="mapa">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1LkW2FtkTiutg1MOki5UudGNBJlU5GVsw" width="850" height="480"></iframe>
+         <div class="Map">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1LkW2FtkTiutg1MOki5UudGNBJlU5GVsw" width="850" height="480" frameborder="0" style="border:0" allowfullscreen></iframe>
          </div>
-
-         <div class="BottomLine"> </div>
 
          <div class="Footer">
-                Copyright Weronika Paterek 2021
+             <p>Copyright Weronika Paterek 2021</p>
          </div>
 
-     </body>
-
+    </body>
 </html>

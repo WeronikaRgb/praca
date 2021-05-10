@@ -1,25 +1,83 @@
 <!doctype html>
-<html>
+<html lang="pl">
      <head>
          <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
-         <link rel="stylesheet" href="../static/hej.css" type="text/css" />
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/galeria.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link rel="stylesheet" type="text/css" href="../static/lightbox.min.css">
+	     <script type="text/javascript" src="../static/js/lightbox-plus-jquery.min.js">
+	     </script>
      </head>
-     <div class="TopBackgroud"> </div>
-     <body> <style> body{margin: 0px;}</style>
 
-         <div class="strona">
-             <a href="start.html">STRONA GŁÓWNA</a>
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
          </div>
 
-                 <div class="nav">
-                    <ul>
-                        <li class="reszta"><a href="szczyty.html">SZCZYTY</a></li>
-                        <li class="reszta"><a href="kzkgp.html">KZKGP</a></li>
-                        <li class="reszta"><a href="galeria.html">GALERIA</a></li>
-                        <li class="reszta"><a href="quiz.html">QUIZ</a></li>
-                        <li class="reszta"><a href="konto.html">KONTO</a></li>
-                    </ul>
-                </div>
-hejka hejka
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Galeria </h1>
+        </div>
+
+
+            <div class="gallery">
+                <a href="../static/pics/ksiazka2.jpg" data-lightbox="mygallery" data-title="Książeczka KGP"> <img src="../static/pics/ksiazka2.jpg" alt="Książeczka KGP"></a>
+                <a href="../static/pics/galeria7.jpg" data-lightbox="mygallery" data-title="Widok ze szlaku na Mogielicę"> <img src="../static/pics/galeria7.jpg" alt="Widok ze szlaku na Mogielicę"></a>
+                <a href="../static/pics/galeria4.jpg" data-lightbox="mygallery" data-title="Widok z Łysicy"> <img src="../static/pics/galeria4.jpg" alt="Widok z Łysicy"></a>
+                <a href="../static/pics/galeria3.jpg" data-lightbox="mygallery" data-title="Krzyż na łysicy"> <img src="../static/pics/galeria3.jpg" alt="Krzyż na łysicy"></a>
+                <a href="../static/pics/galeria5.jpg" data-lightbox="mygallery" data-title="Widok z Mogielicy"> <img src="../static/pics/galeria5.jpg" alt="Widok z Mogielicy"></a>
+                <a href="../static/pics/galeria9.jpg" data-lightbox="mygallery" data-title="Trasa powrotna z Mogielicy"> <img src="../static/pics/galeria9.jpg" alt="Trasa powrtona z Mogielicy"></a>
+                <a href="../static/pics/galeria2.jpg" data-lightbox="mygallery" data-title="Strumyk na szlaku na Mogielicę"> <img src="../static/pics/galeria2.jpg" alt="Strumyk na szlaku na Mogielicę"></a>
+                <a href="../static/pics/galeria1.jpg" data-lightbox="mygallery" data-title="Widok na Babią górę"> <img src="../static/pics/galeria1.jpg" alt="Widok na Babią górę"></a>
+                <a href="../static/pics/galeria6.jpg" data-lightbox="mygallery" data-title="Wieża widokowa na Mogielicy"> <img src="../static/pics/galeria6.jpg" alt="Wieża widokowa na Mogielicy"></a>
+                <a href="../static/pics/galeria8.jpg" data-lightbox="mygallery" data-title="Widok z Mogielicy na północ"> <img src="../static/pics/galeria8.jpg" alt="Widok z Mogielicy na północ"></a>
+                <a href="../static/pics/galeria11.jpg" data-lightbox="mygallery" data-title="Widok ze szlaku na Mogielicę"> <img src="../static/pics/galeria11.jpg" alt="Widok ze szlaku na Mogielicę"></a>
+                <a href="../static/pics/ksiazka.jpg" data-lightbox="mygallery" data-title="Znak na Łysicy"> <img src="../static/pics/ksiazka.jpg" alt="Znak na Łysicy"></a>
+            </div>
+
+
+
+         <div class="DecorativeLine"> </div>
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+
 </body>
+</html>

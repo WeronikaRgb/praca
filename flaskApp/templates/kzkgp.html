@@ -2,69 +2,94 @@
 <html lang="pl">
      <head>
          <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
-         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
          <link rel="stylesheet" href="../static/kzkgp.css" type="text/css" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
      </head>
+
+     <div class="TopBackgroud"> </div>
+
      <body>
-     <style> body{margin: 0px}</style>
-        <div class="TopBackgroud">
-        </div>
-        <div class="pudelko">
-            <div class="logo">
-                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
-            </div>
-            <div class="menu">
-                <ul class="ulmenu">
-                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
-                    <li class="limenu">
-                    {% if current_user.is_authenticated %}
-                        <a  href="{{ url_for('konto') }}">
-                            KONTO  </a>
-                    {% else %}
-                        <div class="withoutLink">
-                        KONTO
-                        </div>
-                    {% endif %}                        <ul class="menu2">
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
                             {% if current_user.is_authenticated %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
                             {% else %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
                             {% endif %}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="ozdobnik2">
-            Klub Zdobywców Korony Gór Polski
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Klub Zdobywców Korony Gór Polski </h1>
         </div>
 
-        <div class="first">
-                 <h2 class="naglowek">TREŚĆ</h2>
-        TREŚĆ
+         <div class="Page">
+             <h2 class="Subtitle">  Członkowstwo w&nbspKZKGP </h2>
 
-        </div>
-         <div class="obrazki">
-             <div class="obrazek1">
-                 <img src="../static/pics/ksiazka3.jpg" alt="KZKGP" style="width:25%; height:300px;">
+             <div class="FirstParagraph">
+                 Żeby zostać oficjalnym członkiem Klubu Zgobywców Korony Gór Polski należy zdobyć wszystkie szczyty z listy Korony Gór Polski. Zdobycie szczytów musi być dokonane przy użyciu siły własnych mięśni. Można zatem pokonać trasę na szczyt pieszo, na rowerze lub na nartach. Naliczanie zdobytych szczytów rozpoczyna się w momencie wstąpienia do Klubu.
              </div>
-             <div class="obrazek2">
-                 <img src="../static/pics/ksiazka1.jpeg" alt="KZKGP" style="width:25%; height:300px;">
+
+             <h3 class="ParagraphTitle"> Książeczka KGP </h3>
+                Po uiszczeniu odpowiedniej opłaty członkowie klubu otrzymują książeczkę KGP. Każda strona książeczki przypisana jest do innego szczytu. Na stronie danego szczytu znajduje się jego nazwa, wysokość oraz pasmo górskie. Większa część strony jest pustym polem, na&nbspktóre należy nakleić zdjęcia oraz przybić pieczęcie ze szczytów.
+
+             <h3 class="ParagraphTitle"> Potwierdzanie zdobycia szczytów </h3>
+                Żeby zdobycie szczytu zostało zaliczone, należy uzyskać potwierdzenie. Służy do tego książeczka KGP. Zdobycie szczytu potwierdza wykonane na nim zdjęcie oraz pieczęć. Fotografia musi zawierać charakterystyczny element góry oraz dobrze widoczną datę. Pieczęć natomiast znajduje się najczęściej w skrzynkach umieszczonych na szczytach.
+             <p> <br> W przypadku braku  skrzynki, można użyć pieczęci schroniska, placówki lub firmy mającej siedzibę w pobliżu szczytu. Może być to również pieczęć z miejscowości najbliższej szczytowi. Potwierdzić zdobycie szczytu może również spotkany na szlaku członek Loży&nbspZdobywców. Składa on swój podpis i pieczęć w książeczce.</p>
+
+             <h3 class="ParagraphTitle">  Czas na zdobycie KGP </h3>
+                Nie ma ograniczenia czasowego na zdobycie Korony Gór Polski. Projekt można zrealizować zarówno w rok, jak i rozłożyć go na kilkanaście lat.
+
+             <h3 class="ParagraphTitle">  Członkowie Klubu </h3>
+                <p>Obecnie do klubu należy około 60 tysięcy osób. Zdobyciem Korony Gór Polski może szczycić się 2800 członków klubu. </p>
+                <p> <br> Do klubu mogą należeć nie tylko Polacy. KZKGP zrzesza miłośników gór z kilku państw europejskich, a nawet Syberii.</p>
+                <p> <br>Dolna granica wieku członków klubu to 7 lat. W celu przystąpienia do klubu osoby niepełnoletnie muszą otrzymać zgodę rodzica lub opiekuna prawnego. </p>
+         </div>
+
+         <div class="Photos">
+             <div class="Photo1">
+                 <img src="../static/pics/kzkgp1.jpg" alt="KZKGP">
              </div>
-             <div class="obrazek3">
-                 <img src="../static/pics/ksiazka.jpg" alt="KZKGP" style="width:25%; height:300px;">
+             <div class="Photo2">
+                 <img src="../static/pics/kzkgp2.jpg" alt="KZKGP">
+             </div>
+             <div class="Photo3">
+                 <img src="../static/pics/kzkgp3.jpg" alt="KZKGP">
              </div>
          </div>
-        <div class="BottomLine">
-        </div>
-        <div class="Footer">
-                 Copyright Weronika Paterek 2021
-        </div>
-     </body>
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+
+</body>
+</html>

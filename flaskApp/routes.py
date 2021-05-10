@@ -1,22 +1,52 @@
 import os
 import secrets
 from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from flaskApp import app, db, bcrypt
-from flaskApp.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from flaskApp.forms import RegistrationForm, LoginForm, UpdateAccountForm, QuestionForm
 from flaskApp.models import User, Quiz
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
+admin = Admin(app)
+
+class Controller(ModelView):
+    def is_accessible(self):
+        if current_user.is_admin == True:
+            return current_user.is_authenticated
+        else:
+            return abort(404)
+       # return current_user.is_authenticated
+
+    def not_auth(self):
+        return "you are not auth"
+
+
+admin.add_view(Controller(Quiz, db.session))
+admin.add_view(Controller(User, db.session))
+
+class MyView:
+    def is_accessible(self):
+        return login.current_user.is_authenticated()
+
+@app.route('/hej')
+def hej():
+    return render_template('hej.html')
+
+
+@app.route('/koniecgry')
+def koniecgry():
+    return render_template('koniecgry.html')
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello Worldddd!'
-
-
-@app.route('/start')
 def start():
     return render_template('start.html')
 
+@app.route('/ostronie')
+def ostronie():
+    return render_template('ostronie.html')
 
 @app.route('/galeria')
 def galeria():
@@ -31,10 +61,6 @@ def szczyty():
 def kzkgp():
     return render_template('kzkgp.html')
 
-
-@app.route('/hej')
-def hej():
-    return render_template('hej.html')
 
 
 @app.route('/quiz')
@@ -113,49 +139,82 @@ def konto():
     return render_template('konto.html', title='Account', image_file=image_file, form=form)
 
 
+# @app.route("/question/new", methods=['GET', 'POST'])
+# @login_required
+# def new_question():
+#     form = QuestionForm()
+#     if form.validate_on_submit():
+#         question = Quiz(question=form.question.data)
+#         db.session.add(question)
+#         db.session.commit()
+#         flash('Your question has been created!', 'success')
+#         return redirect(url_for('quiz'))
+#     return render_template('create_question.html', title='New Question', form=form, legend='New Question')
+#
+#
+# @app.route("/question/<int:question_id>")
+# def question(question_id):
+#     question = Quiz.query.get_or_404(question_id)
+#     return render_template('question.html', question=question, good_answer=question.good_answer,
+#                            bad_answer=question.bad_answer, bad_answer2=question.bad_answer2)
+
+#
+#
+# @app.route("/question/<int:question_id>/update", methods=['GET', 'POST'])
+# @login_required
+# def update_question(question_id):
+#     question = Quiz.query.get_or_404(question_id)
+#     # if "admin@admin.pl" != current_user:
+#     #      abort(403)
+#     form = QuestionForm()
+#     if form.validate_on_submit():
+#         question.question = form.question.data
+#         db.session.commit()
+#         flash('Your question has been updated!', 'success')
+#         return redirect(url_for('question', question_id=question.id))
+#     elif request.method == 'GET':
+#         form.question.data = question.question
+#     return render_template('create_question.html', title='Update Question',
+#                            form=form, legend='Update Question')
+#
+#
+# @app.route("/question/<int:question_id>/delete", methods=['POST'])
+# @login_required
+# def delete_question(question_id):
+#     question = Quiz.query.get_or_404(question_id)
+#     # if post.author != current_user:
+#     #     abort(403)
+#     db.session.delete(question)
+#     db.session.commit()
+#     flash('Your question has been deleted!', 'success')
+#     return redirect(url_for('gra'))
 
 
-# class Player:
-#     def __init__(self, name):
-#         self.name = name
-#     punkty = 0
 
-# konfiguracja aplikacji
-# app.config.update(dict(
-#     SECRET_KEY='bradzosekretnawartosc',
-# ))
+app.config['SECRET_KEY'] = 'bradzosekretnawartosc'
 
-# lista pytań
-# DANE = [{
-#     'pytanie': 'Ile szczytów liczy Korona Gór Polski?',  # pytanie
-#     'odpowiedzi': ['28', '38', '48'],  # możliwe odpowiedzi
-#     'odpok': '28'},  # poprawna odpowiedź
-#     {
-#     'pytanie': 'Jaki jest najniższy szczyt KGP?',
-#     'odpowiedzi': ['Czupel', 'Łysica', 'Lackowa'],
-#         'odpok': 'Łysica'},
-#     {
-#     'pytanie': 'Jaki jest najwyższy szczyt KGP?',
-#     'odpowiedzi': ['Rysy', 'Śnieżka', 'Babia Góra'],
-#     'odpok': 'Rysy'},
-#     {
-#     'pytanie': 'W jakim paśmie leżą Rysy?',
-#     'odpowiedzi': ['Tatry', 'Bieszczady', 'Karkonosze'],
-#     'odpok': 'Tatry'},
-# ]
-#
-#
-# @app.route('/gra', methods=['GET', 'POST'])
-# def gra():
-#     if request.method == 'POST':
-#         punkty = 0
-#         odpowiedzi = request.form
-#
-#
-#         for pnr, odp in odpowiedzi.items():
-#             if odp == DANE[int(pnr)]['odpok']:
-#                 punkty += 1
-#
-#         flash('Liczba poprawnych odpowiedzi, to: {0}'.format(punkty))
-#         return redirect(url_for('gra'))
-#     return render_template('gra.html', pytania=DANE)
+
+@app.route('/gra', methods=['GET', 'POST'])
+def gra():
+    questions = Quiz.query.all()
+
+    results = [
+        {
+            "Question": question.question,
+            "Answers": [question.answer1, question.answer2, question.answer3],
+            "GoodAnswer": question.good_answer,
+            "ID": question.id
+        } for question in questions]
+
+    if request.method == 'POST':
+        punkty = 0
+        odpowiedzi = request.form
+
+        for pnr, odp in odpowiedzi.items():
+            if odp == results[int(pnr)]['GoodAnswer']:
+                punkty += 1
+
+        flash('Liczba poprawnych odpowiedzi, to: {0}'.format(punkty))
+        return redirect(url_for('gra'))
+
+    return render_template('gra.html', questions=questions, quiz=results)

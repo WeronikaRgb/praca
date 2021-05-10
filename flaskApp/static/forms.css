@@ -1,0 +1,141 @@
+/* Formularz */
+.Form{
+    text-align: left;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group{
+    padding: 10px;
+    border-style: none;
+}
+
+.Subtitle{
+    border-color: whitesmoke;
+    border-bottom-style: ridge;
+    padding-left: 0;
+    padding-top: 10px;
+    font-weight: normal;
+}
+
+
+.form-control{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding-left: 10px;
+}
+
+
+.Message{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 1px whitesmoke;
+    padding: 10px;
+    border-radius: 12px;
+}
+.alert-danger{
+    background-color: indianred;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 1px whitesmoke;
+    padding: 10px;
+    border-radius: 12px;
+}
+.alert-success{
+    background-color: palegreen;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 1px whitesmoke;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+
+
+/* Przycisk na końcu (register) */
+input[type=submit]{
+    color: darkslategrey;
+    background-color: white;
+    border-style: solid;
+    border-color: darkslategrey;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+.ConfirmButton{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+input[type=submit]:focus{
+    box-shadow: 0 0 1em darkslategrey;
+    transition: 1s;
+}
+input[type=submit]:hover{
+    color: white;
+    background-color: darkslategrey;
+    linear-gradient(red, blue);
+    transition: 1s;
+}
+
+
+.BottomBorder{
+    margin-top: 20px;
+    border-top: 1px solid #ced4da;
+}
+.text-muted{
+    color: dimgrey;
+}
+
+.account-heading{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.text-secondary{
+    text-align: center;
+}
+
+
+.ProfilePic{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    margin-left: 50px;
+}
+.media{
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.admin{
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border: 5px solid darkslategrey;
+}
+.AdminCon {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+.AdminCon:hover{
+    box-shadow: 0 0 1em grey;
+    transition: 1s;
+    background-color: lightgrey;
+}

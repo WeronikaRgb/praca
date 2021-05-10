@@ -1,71 +1,77 @@
 <!doctype html>
-<html>
+<html lang="pl">
      <head>
          <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
-         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
          <link rel="stylesheet" href="../static/quiz.css" type="text/css" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alatsi&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
      </head>
-     <body> <style> body{margin: 0px}</style>
-        <div class="TopBackgroud">
-        </div>
-        <div class="pudelko">
-            <div class="logo">
-                <a  href="{{ url_for('start') }}">STRONA GŁÓWNA </a>
-            </div>
-            <div class="menu">
-                <ul class="ulmenu">
-                    <li class="limenu"> <a  href="{{ url_for('szczyty') }}"> SZCZYTY </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('kzkgp') }}"> KZKGP </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('galeria') }}"> GALERIA </a> </li>
-                    <li class="limenu"> <a  href="{{ url_for('quiz') }}"> QUIZ </a> </li>
-                    <li class="limenu">
-                    {% if current_user.is_authenticated %}
-                        <a  href="{{ url_for('konto') }}">
-                            KONTO  </a>
-                    {% else %}
-                        <div class="withoutLink">
-                        KONTO
-                        </div>
-                    {% endif %}
-                        <ul class="menu2">
+
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">KZKGP</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
                             {% if current_user.is_authenticated %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
                             {% else %}
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('login') }}">Logowanie </a> </li>
-                            <li class="menuu"> <a class="rozwijana"  href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
                             {% endif %}
-                        </ul>
-                </ul>
-            </div>
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Quiz wiedzy o KGP </h1>
         </div>
-        <div class="ozdobnik2">
-            Quiz
-        </div>
-     <div class="tresc">
-         <div class="first">
-             <p><h2 class="naglowek">O grze</h2>  </p>
-             <p> Quiz składa się z piętnastu pytań.</p>
+
+         <div class="Page">
+             <h2 class="Subtitle">  O&nbspgrze </h2>
+             <p> Quiz składa się z 10 pytań.</p>
              <p> Odpowiedz na wszystkie, wybierając jedną poprawną odpowiedź. </p>
              <p> Zdobądź jak najwięcej punktów.</p>
-             <p> Sprawdź  swoją wiedzę.</p>
+             <p> Sprawdź  swoją wiedzę.  </p>
+             <div> <br>
+                 {% if current_user.is_authenticated %}
+                    <p> <a  href="{{ url_for('gra') }}" > Grajmy! </a> </p>
+                 {% else %}
+                     <p> Aby zagrać <a  href="{{ url_for('login') }}"> zaloguj się </a> do swojego konta. Jeżeli nie masz konta <a  href="{{ url_for('register') }}"> utwórz je  </a>. </p>
+                 {% endif %}
+             </div>
+
          </div>
-         <div class="start">
-             {% if current_user.is_authenticated %}
-                <p> <a  href= ? > Grajmy! </a> </p>
-             {% else %}
-                 <p> Aby zagrać <a  href="{{ url_for('login') }}"> zaloguj się </a> do swojego konta. Jeżeli nie masz konta <a  href="{{ url_for('register') }}"> utwórz je  </a>. </p>
-             {% endif %}
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
          </div>
-     </div>
 
-     <div class="BottomLine">
-     </div>
-
-     <div class="Footer">
-         Copyright Weronika Paterek 2021
-     </div>
-
-     </body>
+    </body>
+</html>

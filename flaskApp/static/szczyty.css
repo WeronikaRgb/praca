@@ -1,47 +1,61 @@
-.ozdobnik2
-{
-    width:100%;
-    height: 150px;
-    text-align: center;
-    font-size: 50px;
-    font-family: Arial;
-    color: black;
-    display: block;
-    line-height: 150px;
-}
-
-.tresc{
-    margin-right: 200px;
-    margin-left: 200px;
+.Page{
+    margin-right: 205px;
+    margin-left: 205px;
     margin-bottom: 40px;
-    background-color: lightgrey;
     text-align: center;
-    font-size: large;
-    font-family: Arial;
-    height: 800px;
+    display: block;
 }
 
-.tabela{
+/* Tabela */
+.Table{
     width: 100%;
     height: 100%;
     margin-right: auto;
     margin-left: auto;
     border: 1px solid black;
     border-collapse: collapse;
-
+    background-color: lightgrey;
 }
-
-.tabela td {
+.Table td {
    border: 1px solid black;
 }
-
-.tabelanag{
+.TableTitle{
     background-color: darkslategrey;
     color: white;
 }
-.mapa{
+
+/* Mapa */
+.Map{
     margin-left: 200px;
     margin-right: 200px;
     text-align: center;
     margin-bottom: 40px;
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+
+}
+.Map iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    display: inline;
+    position:absolute;
+}
+
+.Footer{
+    position: static;
+}
+
+@media all and (max-width: 900px) {
+   .Page{
+       margin-left: auto;
+       margin-right: auto;
+    }
+    .Map {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
