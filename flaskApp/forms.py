@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
@@ -59,3 +59,10 @@ class UpdateAccountForm(FlaskForm):
 class QuestionForm(FlaskForm):
     question = TextAreaField('Pytanie', validators=[DataRequired()])
     submit = SubmitField('Gotowe!')
+
+
+class PostForm(FlaskForm):
+    title = StringField('Tytuł', validators=[DataRequired()])
+    content = TextAreaField('Komentarz', validators=[DataRequired()])
+    image_file = FileField('Zdjęcie ', validators=[FileAllowed(['jpg', 'png'], FileRequired())])
+    submit = SubmitField('Opublikuj')

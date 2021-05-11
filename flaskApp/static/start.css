@@ -192,6 +192,7 @@
     font-family: 'Alegreya Sans', sans-serif;
     font-size: 18px;
 
+
 }
 .pudełko{
     margin-right: auto;
@@ -207,156 +208,49 @@
     padding: 20px;
 }
 
-.ParagraphTitle{
-
-}
 
 @media all and (max-width: 1200px) {
+    .Title{
+        width: 100%;
+        display: block;
+        flex-direction: column;
+        margin: 0;
+        background-color: white;
+    }
+    .SubpageTitleBackground{
+        display: block;
+        flex-direction: column;
+        width: 100%;
+        background-color: white;
+        margin-right: 0;
+    }
+
+    .ColorBackground{
+        height: 100%;
+        display: inline-block;
+    }
+
+    .MainPagePhoto img{
+        width: 100px;
+        height: 200px;
+    }
+
+    .SubpageTitleBackground img{
+        width: 100%;
+    }
+
 
 }
 @media all and (max-width: 900px) {
     .MainPage{
         width: 100%;
     }
+    .About{
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
+    }
+
+
 }
 @media all and (max-width: 480px) {}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.tresc
-{
-    margin-right: 80px;
-    margin-left: 80px;
-    margin-top: 30px;
-    background-color: coral;
-    font-family: Arial;
-}
-.tresc2{
-    margin-right: 80px;
-    margin-left: 80px;
-    display: inline-flex;
-}
-
-
-.naglowek1{
-    border-width: medium;
-    border-bottom-style: solid;
-    border-color: darkred;
-    padding-left: 20px;
-}
-.firstleft
-{
-    display: block;
-    margin-right: 215px;
-    margin-left: 215px;
-    margin-bottom: 20px;
-    font-size: medium;
-    background-color: lightgrey;
-
-}
-.firstright
-{
-    display: inline;
-    width: 50%;
-    float: right;
-    background-image: url("https://tinypng.com/images/social/website.jpg");
-}
-
-.second
-{
-    display: block;
-    float: left;
-    width: 100%;
-    margin-bottom: 20px;
-    background-color: beige;
-}
-
-.third
-{
-    display: block;
-    width: 60%;
-    margin-bottom: 30px;
-    font-size: medium;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Arial;
-}
-
-.four
-{
-    margin-top: 180px;
-    display: block;
-    width: 55%;
-    margin-bottom: 30px;
-    font-size: medium;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: lightcoral;
-    font-family: Arial;
-}
-.h2{
-    font-weight: bold;
-}
-
-.ozdobnik3{
-    width: 100%;
-    border-bottom:darkred ;
-    border-bottom-style: solid;
-    border-bottom-width: 5px;
-}
-
-
-
-
-
-.menuu3{
-    text-decoration: none;
-    list-style-type: none;
-}
-.menu2{
-    margin-bottom: 30px;
-}
-
-
-.menuu3 a{
-    height: 80px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    float: right;
-    padding-top: -30px;
-    background-color: lightgrey;
-}
-
-.menuu1{
-    text-decoration: none;
-    list-style-type: none;
-}
-.menuu2{
-    text-decoration: none;
-    list-style-type: none
-}
-.menuu1 a{
-    height: 80px;
-    margin-top: 40px;
-    float: right;
-    padding-top: -30px;
-    background-color: lightgrey;
-}
-.menuu2 a{
-    height: 80px;
-    margin-top: 10px;
-    float: right;
-    padding-top: -30px;
-    background-color: lightgrey;
-}
-

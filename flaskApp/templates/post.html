@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/ready_post.css" type="text/css" />
+    </head>
+
+    <body>
+
+
+     <div class="TopBackgroud"> </div>
+
+    <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">Klub</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+<div class="Page">
+
+{% block content %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+              </div>
+              <h2 class="article-title">{{ post.title }}</h2>
+              <p class="article-content">{{ post.content }}</p>
+                <img class="Pic" src="{{ url_for('static', filename='gallery_pics/' + post.image_file) }}">
+
+                <div class="podpis">
+                <img class="ProfilePic" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+                <a class="mr-2" href="#">{{ post.author.username }}</a>
+                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                </div>
+
+                {% if post.author == current_user %}
+                  <div class="delete">
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Usuń post</button>
+                  </div>
+                {% endif %}
+
+            </div>
+          </article>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Czy na pewno chcesz usunąć ten post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+          <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Usuń">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
