@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+}
+
+.SubpageNav{
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 20px;
+    background-color: darkslategrey;
+    display: flex;
+    color: white;
+}
+.SubpageColumn{
+    list-style-type: none;
+}
+.Subpage{
+    padding: 10px;
+    margin: auto;
+}
+
+@media all and (max-width: 900px) {
+	.Nav ul{
+		flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+}
