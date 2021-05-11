@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+         <link rel="stylesheet" href="../static/forms.css" type="text/css" />
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/post.css" type="text/css" />
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+     <div class="TopBackgroud"> </div>
+
+    <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">Klub</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Dodaj nowy post </h1>
+        </div>
+
+<div class="Page">
+<div class="Form">
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.content.label(class="form-control-label") }}
+                {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.image_file.label(class="form-control-file") }}
+                {{ form.image_file(class="form-control-file") }}
+                {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+
+        </fieldset>
+        <div class="ConfirmButton">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}
+</div>
+</div>
+
+</body>
+</html>

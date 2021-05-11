@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl">
+     <head>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+         <title>Korona Gór Polski</title>
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/galeria.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link rel="stylesheet" type="text/css" href="../static/lightbox.min.css">
+	     <script type="text/javascript" src="../static/js/lightbox-plus-jquery.min.js">
+	     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	     </script>
+     </head>
+
+     <div class="TopBackgroud"> </div>
+
+     <body> <style> body {margin: 0;} </style>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">Klub</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Galeria </h1>
+        </div>
+
+
+        <div class="navi">
+             {% block blok %}
+                 {% if current_user.is_authenticated %}
+                     <a class="navi" href="{{ url_for('new_post') }}">Dodaj nowe zdjęcie!</a>
+                 {% endif %}
+             {% endblock  blok %}
+         </div>
+
+
+             <div class="Message">
+                  {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                  {% block HEJa %}{% endblock %}
+             </div>
+
+         <div class="galeria">
+            {% block heja %}
+                {% for post in posts %}
+                    <article class="media content-section">
+{#                      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">#}
+                      <div class="media-body">
+                        <div class="article-metadata">
+                         {{ post.author.username }}
+                          <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                        <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                          <img class="Pic" src="{{ url_for('static', filename='gallery_pics/' + post.image_file) }}">
+{#                        <p class="article-content">{{ post.content }}</p>#}
+
+                      </div>
+                    </article>
+                {% endfor %}
+            {% endblock heja %}
+            </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     </body>
+</html>

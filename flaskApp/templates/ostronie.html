@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pl">
+     <head>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+         <title>Korona Gór Polski</title>
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/ostronie.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alatsi&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     </head>
+
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">Klub</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> O stronie </h1>
+        </div>
+
+         <div class="Page">
+            <p>  Autorem niniejszego serwisu jest Weronika Paterek.</p>
+            <p> Serwis ten stanowi integralną część pracy licencjackiej
+                <br> (kierunek: Elektroniczne Przetwarzanie Informacji),
+                <br>   przygotowanej pod kierunkiem  dr. Piotra Śliwińskiego
+                <br>   na Wydziale Zarządzania i Komunikacji Społecznej Uniwersytetu Jagiellońskiego. </p>
+         </div>
+
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+
+</body>
