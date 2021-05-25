@@ -1,4 +1,8 @@
-                .navi{
+h1{
+  color: black;
+}
+
+.navi{
   text-align: center;
   font-size: 20px;
   text-decoration: none;
@@ -34,9 +38,6 @@ body {
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
 
 .bg-steel {
   background-color: #5f788a;
@@ -69,6 +70,8 @@ h1, h2, h3, h4, h5, h6 {
 .article-title {
   color: #444444;
   text-align: center;
+  text-decoration: none;
+
 }
 
 a.article-title:hover {
@@ -121,4 +124,41 @@ a.article-title:hover {
 .media-body img {
     width: 250px;
     height: 250px;
+}
+
+.alert-success{
+    background-color: palegreen;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 1px whitesmoke;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.Paginacja{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  margin-bottom: 20px;
+}
+.Paginator{
+  background-color: whitesmoke;
+  display: inline;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-size: 20px;
+  padding: 5px;
+  color: darkslategrey;
+  border: 1px solid darkslategrey;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.Paginacja a:hover{
+  color: white;
+  background-color: darkslategrey;
+  transition: 1s;
 }

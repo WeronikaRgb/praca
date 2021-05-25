@@ -3,7 +3,6 @@
     width: 250px;
     height: 100%;
 }
-
 .MainPage a:hover{
     color: white;
     text-decoration: none;
@@ -12,4 +11,77 @@
 /* Dodatkowa konfiguracja Menu ze względu na bootstrap */
 .Nav a:hover{
     height: 80px;
+}
+
+.SubpageColumnNav{
+    padding-left: 0;
+}
+
+.ProfilePic{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.article-title{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.article-content{
+    text-align: center;
+}
+.Pic{
+    text-align: center;
+    height: 500px;
+    width: 100%;
+}
+
+.delete{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+.podpis{
+    width: 100%;
+    margin-top: 20px;
+    border: 2px solid darkslategrey;
+    padding: 10px;
+}
+
+.mr-2{
+    color: black;
+    text-decoration: none;
+}
+
+.podpis a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+.back{
+  text-align: center;
+  font-size: 15px;
+  text-decoration: none;
+  margin-bottom: 20px;
+
+  font-family: 'Open Sans', sans-serif;
+}
+
+.back a{
+    text-decoration: none;
+    padding: 5px;
+    border: 1px solid darkslategrey;
+    border-radius: .25rem;
+    background-color: darkslategrey;
+    color: white;
+
+}
+.back a:hover{
+
+  background-color: #182828;
+  transition: 1s;
 }

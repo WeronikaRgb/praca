@@ -64,5 +64,5 @@ class QuestionForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Tytuł', validators=[DataRequired()])
     content = TextAreaField('Komentarz', validators=[DataRequired()])
-    image_file = FileField('Zdjęcie ', validators=[FileAllowed(['jpg', 'png'], FileRequired())])
+    image_file = FileField('Zdjęcie ', validators=[FileAllowed(['jpg', 'png']), FileRequired()])
     submit = SubmitField('Opublikuj')

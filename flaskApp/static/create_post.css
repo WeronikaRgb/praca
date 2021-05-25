@@ -1,0 +1,15 @@
+/* Dodatkowa konfiguracja Menu strona główna / ze względu na bootstrap */
+.MainPage{
+    width: 250px;
+    height: 100%;
+}
+
+.MainPage a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+/* Dodatkowa konfiguracja Menu ze względu na bootstrap */
+.Nav a:hover{
+    height: 80px;
+}

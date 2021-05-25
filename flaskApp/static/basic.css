@@ -177,6 +177,29 @@ ul > li:hover > ol {
     line-height: 1.42857143;
 }
 
+/* Przypisy */
+.Note{
+    text-decoration: none;
+    color: black;
+}
+.Note a:hover{
+    color: black;
+}
+.NoteWhite{
+    text-decoration: none;
+    color: white;
+}
+
+.przypis a{
+    text-decoration: none;
+    color: #333333;
+    padding-top: 20px;
+    text-align: justify;
+}
+.przypis a:hover{
+    color: black;
+}
+
 
 @media all and (max-width: 1200px) {
     .MainPage{

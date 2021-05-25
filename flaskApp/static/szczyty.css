@@ -49,6 +49,9 @@
     position: static;
 }
 
+
+
+
 @media all and (max-width: 900px) {
    .Page{
        margin-left: auto;

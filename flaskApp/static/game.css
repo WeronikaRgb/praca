@@ -14,7 +14,7 @@
 /* Linia dekoracyjna */
 .DecorativeLine {
     width: 100%;
-    border-bottom:darkred ;
+    border-bottom:black ;
     border-bottom-style: solid;
     border-bottom-width: 5px;
 }

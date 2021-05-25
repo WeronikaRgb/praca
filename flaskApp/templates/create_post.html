@@ -3,8 +3,11 @@
     <head>
          <link rel="stylesheet" href="../static/forms.css" type="text/css" />
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
-         <link rel="stylesheet" href="../static/post.css" type="text/css" />
+         <link rel="stylesheet" href="../static/create_post.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
     </head>
 
      <div class="TopBackgroud"> </div>
@@ -86,7 +89,7 @@
                 {{ form.image_file(class="form-control-file") }}
                 {% if form.image_file.errors %}
                     {% for error in form.image_file.errors %}
-                        <span class="text-danger">{{ error }}</span>
+                        <span>{{ error }}</span>
                     {% endfor %}
                 {% endif %}
             </div>

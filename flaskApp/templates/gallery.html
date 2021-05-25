@@ -5,8 +5,7 @@
          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
          <title>Korona Gór Polski</title>
          <link rel="stylesheet" href="../static/basic.css" type="text/css" />
-         <link rel="stylesheet" href="../static/galeria.css" type="text/css" />
-         <link rel="stylesheet" href="../static/hej.css" type="text/css" />
+         <link rel="stylesheet" href="../static/gallery.css" type="text/css" />
          <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
          <link rel="preconnect" href="https://fonts.gstatic.com">
          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
@@ -59,6 +58,16 @@
            <h1> Galeria </h1>
         </div>
 
+
+        <div class="navi">
+             {% block blok %}
+                 {% if current_user.is_authenticated %}
+                     <a class="navi" href="{{ url_for('new_post') }}">Dodaj nowe zdjęcie!</a>
+                 {% endif %}
+             {% endblock  blok %}
+         </div>
+
+
              <div class="Message">
                   {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -74,9 +83,8 @@
 
          <div class="galeria">
             {% block heja %}
-                {% for post in posts %}
+                {% for post in posts.items %}
                     <article class="media content-section">
-{#                      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">#}
                       <div class="media-body">
                         <div class="article-metadata">
                          {{ post.author.username }}
@@ -84,26 +92,29 @@
                         </div>
                         <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
                           <img class="Pic" src="{{ url_for('static', filename='gallery_pics/' + post.image_file) }}">
-{#                        <p class="article-content">{{ post.content }}</p>#}
-
                       </div>
                     </article>
                 {% endfor %}
             {% endblock heja %}
             </div>
 
-            <div class="navi">
-                {% block blok %}
-                {% if current_user.is_authenticated %}
-                <a class="navi" href="{{ url_for('new_post') }}">New Post</a>
-                {% endif %}
-                {% endblock  blok %}
-            </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
+     <div class="Paginacja">
+                   {% block paginacja %}
+            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                  {% if page_num %}
+                    {% if posts.page == page_num %}
+                      <a class="Paginator" href="{{ url_for('galeria', page=page_num) }}">{{ page_num }}</a>
+                    {% else %}
+                      <a class="Paginator" href="{{ url_for('galeria', page=page_num) }}">{{ page_num }}</a>
+                    {% endif %}
+                  {% else %}
+                    ...
+                  {% endif %}
+                {% endfor %}
+            {% endblock paginacja %}
+     </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
      </body>
 </html>

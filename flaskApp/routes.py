@@ -11,13 +11,14 @@ from flask_admin.contrib.sqla import ModelView
 
 admin = Admin(app)
 
+
 class Controller(ModelView):
     def is_accessible(self):
-        if current_user.is_admin == True:
+
+        if current_user.is_admin:
             return current_user.is_authenticated
         else:
             return abort(404)
-       # return current_user.is_authenticated
 
     def not_auth(self):
         return "you are not auth"
@@ -33,23 +34,22 @@ class MyView:
         return login.current_user.is_authenticated()
 
 
-@app.route('/koniecgry')
-def koniecgry():
-    return render_template('koniecgry.html')
-
-
 @app.route('/')
 def start():
     return render_template('start.html')
 
+
 @app.route('/ostronie')
 def ostronie():
-    return render_template('ostronie.html')
+    return render_template('about.html')
+
 
 @app.route('/galeria')
 def galeria():
-    posts = Post.query.all()
-    return render_template('galeria.html', posts=posts)
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=8)
+    return render_template('gallery.html', posts=posts)
+
 
 @app.route('/szczyty')
 def szczyty():
@@ -59,7 +59,6 @@ def szczyty():
 @app.route('/kzkgp')
 def kzkgp():
     return render_template('kzkgp.html')
-
 
 
 @app.route('/quiz')
@@ -135,8 +134,7 @@ def konto():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('konto.html', title='Account', image_file=image_file, form=form)
-
+    return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 
 app.config['SECRET_KEY'] = 'bradzosekretnawartosc'
@@ -144,7 +142,13 @@ app.config['SECRET_KEY'] = 'bradzosekretnawartosc'
 
 @app.route('/gra', methods=['GET', 'POST'])
 def gra():
+    global questions
     questions = Quiz.query.all()
+    global punkty
+    global odp
+    global pnr
+    global odpowiedzi
+    global results
 
     results = [
         {
@@ -157,19 +161,23 @@ def gra():
     if request.method == 'POST':
         punkty = 0
         odpowiedzi = request.form
+        good_answers = []
+        bad_answers = []
 
         for pnr, odp in odpowiedzi.items():
             if odp == results[int(pnr)]['GoodAnswer']:
                 punkty += 1
+                good_answers.append(odp)
+            else:
+                bad_answers.append(odp)
+        return render_template('endgame.html', questions=questions, quiz=results, results=results,  odpowiedzi=odpowiedzi, good_answers=good_answers, bad_answers=bad_answers, punkty=punkty)
 
-        flash('Liczba poprawnych odpowiedzi, to: {0}'.format(punkty))
-        return redirect(url_for('gra'))
-
-    return render_template('gra.html', questions=questions, quiz=results)
+    return render_template('game.html', questions=questions, quiz=results)
 
 
-
-
+@app.route('/koniec', methods=['GET', 'POST'])
+def koniec():
+    return render_template('endgame.html', questions=questions, quiz=results, results=results,  odpowiedzi=odpowiedzi)
 
 
 @app.route("/post/new", methods=['GET', 'POST'])
@@ -181,7 +189,7 @@ def new_post():
         post = Post(title=form.title.data, content=form.content.data, image_file=picture_file, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your post has been created!', 'success')
+        flash('Twój post został dodany!', 'success')
         return redirect(url_for('galeria'))
     return render_template('create_post.html', title='New Post',
                            form=form, legend='Nowy Post')
@@ -191,12 +199,6 @@ def new_post():
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
-
-@app.route('/hej')
-def hej():
-    return render_template('hej.html')
-
-
 
 
 @app.route("/post/<int:post_id>/delete", methods=['POST'])
