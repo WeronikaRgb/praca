@@ -110,7 +110,7 @@ input[type='radio']:after {
         top: -3px;
         left: -4px;
         position: relative;
-        background-color: darkred;
+        background-color: #8b0000;
         display: inline-block;
         visibility: visible;
         border: 2px solid whitesmoke;

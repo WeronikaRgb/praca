@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pl">
+     <head>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+         <title>Korona Gór Polski</title>
+         <link rel="stylesheet" href="../static/basic.css" type="text/css" />
+         <link rel="stylesheet" href="../static/endgame.css" type="text/css" />
+         <link rel="icon" href="../static/pics/icon.jpg" sizes="16x16 32x32" type="image/jpg">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+         <link href='http://fonts.googleapis.com/css?family=Alata&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     </head>
+
+
+     <div class="TopBackgroud"> </div>
+
+     <body>
+
+         <div class="MainPage">
+             <a href="{{ url_for('start') }}">STRONA GŁÓWNA</a>
+         </div>
+
+         <div class="Nav">
+             <ul class="SubpageNav">
+                 <li class="Subpage"><a href="{{ url_for('szczyty') }}">Szczyty</a></li>
+                 <li class="Subpage"><a href="{{ url_for('kzkgp') }}">Klub</a></li>
+                 <li class="Subpage"><a href="{{ url_for('galeria') }}">Galeria</a></li>
+                 <li class="Subpage"><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                 <li class="Subpage"><a href="{{ url_for('ostronie') }}">O Stronie</a></li>
+                 <li class="Subpage">
+                     {% if current_user.is_authenticated %}
+                        <a  href="{{ url_for('konto') }}"> Konto  </a>
+                     {% else %}
+                         <div class="SubpageNoLink">
+                             Konto
+                         </div>
+                     {% endif %}
+                        <ol class="SubpageColumnNav">
+                            {% if current_user.is_authenticated %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('logout') }}">Wyloguj</a> </li>
+                            {% else %}
+                            <li class="SubpageColumn"> <a href="{{ url_for('login') }}">Logowanie </a> </li>
+                            <li class="SubpageColumn"> <a href="{{ url_for('register') }}">Rejestracja</a> </li>
+                            {% endif %}
+                        </ol>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="SubpageTitle">
+           <h1> Ukończyłeś quiz! </h1>
+        </div>
+
+         <div class="Page">
+
+             <h2 class="Subtitle">  Koniec gry </h2>
+
+             <p class="punkty">
+                Gratulacje {{ current_user.username }}, quiz ukończony. <br>
+             </p>
+
+             <p class="punkty">
+                 Liczba poprawnych odpowiedzi to: {{ punkty }}. <br>
+             </p>
+
+            {% if  punkty == 0 %}
+                <p> Niestety nie przyłożyłeś się. Przeczytaj treść strony jeszcze raz. Następnym razem na pewno osiągniesz lepszy wynik. </p>
+             {% elif punkty == 1 or punkty == 2 or punkty == 3 %}
+                <p> Widać, że spędziłeś na tej stronie odrobinkę czasu. <br> Postaraj się przeczytać ją jeszcze raz, a na pewno poprawisz swój wynik. </p>
+            {% elif punkty == 4 or punkty == 5 or punkty == 6 %}
+                <p> Całkiem nieźle! Widać, że wiele wiesz o Koronie Gór Polski. </p>
+            {% elif punkty == 7 or punkty == 8 or punkty == 9 %}
+                <p> Twoja wiedza na temat Korony Gór Polski jest imponująca, chociaż nadal masz jeszcze kilka tajemnic do odkrycia. </p>
+            {% elif punkty == 10 %}
+                <p> Jesteś prawdziwym znawcą Korony Gór Polski! Możesz śmiało pakować plecak na górską wyprawę! <br>
+                </p>
+            {% endif %}
+
+
+
+             <p class="podsumowanie">
+                 Podsumowanie odpowiedzi: <br>
+             </p>
+
+
+         <div>
+
+         </div>
+                                {% for p in quiz %}
+                                    <div class="Odpowiedzi">
+                                {{ p['Question'] }}
+                                {% set pnr = loop.index0 %}
+                                    {% for o in p["Answers"] %}
+                                       {% if  o  in good_answers  %}
+                                            <p class="good"> Wybrano poprawną odpowiedź:  <br> {{ o }}</p>
+                                       {% endif %}
+                                    {% if  o  in bad_answers  %}
+                                            <p class="bad"> Wybrano błędną odpowiedź: <br> {{ o }}</p>
+                                    {% endif %}
+                                    {% endfor %}
+                                  </div>
+                            {% endfor %}
+
+         </div>
+
+             <div class="Open">
+                <input type="checkbox" id="faq-1">
+                <h2><label for="faq-1">Wyświetl poprawne odpowiedzi</label></h2>
+                <div class="odp">
+                        {% block popraw %}
+                            {% for p in quiz %}
+                                {{ p['Question'] }}
+                                {% set pnr = loop.index0 %}
+                                    {% for o in p["Answers"] %}
+                                       {% if  o  !=  p["GoodAnswer"]  %}
+                                            <div class="bad"> {{ o }}</div>
+                                       {% elif o == p["GoodAnswer"] %}
+                                            <div class="good"> {{ o }} </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                  <br>
+                            {% endfor %}
+                        {% endblock popraw %}
+                </div>
+             </div>
+
+         <div class="DecorativeLine"> </div>
+
+         <div class="Footer">
+             <p>Copyright Weronika Paterek 2021</p>
+         </div>
+
+</body>
+</html>

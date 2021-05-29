@@ -14,7 +14,7 @@
 /* Menu główne - nawigacja strony  */
 .Nav ul
 {
-	background-color: white;
+	background-color: #ffffff;
 	list-style-type: none;
 	font-size: 20px;
 	display: flex;
@@ -54,8 +54,8 @@
 }
 
 .Nav a:hover{
-    color: white;
-    background-color: darkslategrey;
+    color: #ffffff;
+    background-color: #2f4f4f;
     box-shadow: 0 2px 3px gray;
     text-decoration: none;
     height: 40px;
@@ -180,10 +180,10 @@ ul > li:hover > ol {
 /* Przypisy */
 .Note{
     text-decoration: none;
-    color: black;
+    color: #000000;
 }
 .Note a:hover{
-    color: black;
+    color: #000000;
 }
 .NoteWhite{
     text-decoration: none;
